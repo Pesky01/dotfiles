@@ -1,6 +1,7 @@
 -- Colorscheme I wants
-local theme = require('themes/jellybeans')
+local theme = require('themes/tokyonight')
 local api = vim.api
+local transparent = true
 
 function ColorMyTreesitter()
   api.nvim_set_hl(0, '@attribute', { fg = theme.base0A })
@@ -102,7 +103,7 @@ function ColorMyDefaults()
   api.nvim_set_hl(0, 'LineNr', { fg = theme.grey })
   -- Floating Windows
   api.nvim_set_hl(0, 'FloatBorder', { fg = theme.blue })
-  api.nvim_set_hl(0, 'NormalFloat', { bg = theme.darker_black })
+  api.nvim_set_hl(0, 'NormalFloat', { bg = transparent and 'none' or theme.darker_black })
   api.nvim_set_hl(0, 'NvimInternalError', { fg = theme.red })
   api.nvim_set_hl(0, 'WinSeparator', { fg = theme.line })
   -- Packer
@@ -115,7 +116,7 @@ function ColorMyDefaults()
   api.nvim_set_hl(0, 'PackerStatus', { fg = theme.blue })
   api.nvim_set_hl(0, 'PackerHash', { fg = theme.blue })
   -- Transparent -> bg = 'none'
-  api.nvim_set_hl(0, 'Normal', { fg = theme.base05, bg = theme.base00 })
+  api.nvim_set_hl(0, 'Normal', { fg = theme.base05, bg = transparent and 'none' or theme.base00 })
   api.nvim_set_hl(0, 'NonText', { fg = theme.base03 })
   api.nvim_set_hl(0, 'Bold', { bold = true })
   api.nvim_set_hl(0, 'Debug', { fg = theme.base08 })
@@ -188,32 +189,35 @@ function ColorMyDevicons()
 end
 
 function ColorMyBufferline()
-  api.nvim_set_hl(0, 'BufferLineBackground', { fg = theme.light_grey, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferlineIndicatorVisible', { fg = theme.black2, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferLineBufferSelected', { fg = theme.white, bg = theme.black })
-  api.nvim_set_hl(0, 'BufferLineBufferVisible', { fg = theme.light_grey, bg = theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineBackground', { fg = theme.light_grey, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferlineIndicatorVisible', { fg = theme.black2, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineBufferSelected', { fg = theme.white, bg = transparent and 'none' or theme.black })
+  api.nvim_set_hl(0, 'BufferLineBufferVisible', { fg = theme.light_grey, bg = transparent and 'none' or theme.black2 })
   -- for diagnostics = 'nvim_lsp'
-  api.nvim_set_hl(0, 'BufferLineError', { fg = theme.light_grey, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferLineErrorDiagnostic', { fg = theme.light_grey, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferLineCloseButton', { fg = theme.light_grey, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferLineCloseButtonVisible', { fg = theme.light_grey, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferLineCloseButtonSelected', { fg = theme.red, bg = theme.black })
-  api.nvim_set_hl(0, 'BufferLineFill', { fg = theme.grey_fg, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferlineIndicatorSelected', { fg = theme.black, bg = theme.black })
-  api.nvim_set_hl(0, 'BufferLineModified', { fg = theme.red, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferLineModifiedVisible', { fg = theme.red, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferLineModifiedSelected', { fg = theme.green, bg = theme.black })
+  api.nvim_set_hl(0, 'BufferLineError', { fg = theme.light_grey, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineErrorDiagnostic', { fg = theme.light_grey, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineCloseButton', { fg = theme.light_grey, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineCloseButtonVisible',
+    { fg = theme.light_grey, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineCloseButtonSelected', { fg = theme.red, bg = transparent and 'none' or theme.black })
+  api.nvim_set_hl(0, 'BufferLineFill', { fg = theme.grey_fg, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferlineIndicatorSelected', { fg = theme.black, bg = transparent and 'none' or theme.black })
+  api.nvim_set_hl(0, 'BufferLineModified', { fg = theme.red, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineModifiedVisible', { fg = theme.red, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineModifiedSelected', { fg = theme.green, bg = transparent and 'none' or theme.black })
   -- separators
-  api.nvim_set_hl(0, 'BufferLineSeparator', { fg = theme.black2, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferLineSeparatorVisible', { fg = theme.black2, bg = theme.black2 })
-  api.nvim_set_hl(0, 'BufferLineSeparatorSelected', { fg = theme.black2, bg = theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineSeparator', { fg = theme.darker_black, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineSeparatorVisible', { fg = theme.black2, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'BufferLineSeparatorSelected', { fg = theme.black2, bg = transparent and 'none' or theme.black2 })
   -- tabs
-  api.nvim_set_hl(0, 'BufferLineTab', { fg = theme.light_grey, bg = theme.one_bg3 })
-  api.nvim_set_hl(0, 'BufferLineTabSelected', { fg = theme.light_grey, bg = theme.nord_blue })
-  api.nvim_set_hl(0, 'BufferLineTabClose', { fg = theme.red, bg = theme.black })
+  api.nvim_set_hl(0, 'BufferLineTab', { fg = theme.light_grey, bg = transparent and 'none' or theme.one_bg3 })
+  api.nvim_set_hl(0, 'BufferLineTabSelected', { fg = theme.light_grey, bg = transparent and 'none' or theme.nord_blue })
+  api.nvim_set_hl(0, 'BufferLineTabClose', { fg = theme.red, bg = transparent and 'none' or theme.black })
 
-  api.nvim_set_hl(0, 'BufferLineDevIconDefaultSelected', { bg = 'none' })
-  api.nvim_set_hl(0, 'BufferLineDevIconDefaultInactive', { bg = 'none' })
+  -- why not work???
+  -- api.nvim_set_hl(0, 'BufferLineDevIconDefaultSelected', { bg = theme.white })
+  -- api.nvim_set_hl(0, 'BufferLineDevIconDefaultInactive', { bg = theme.white })
+
   api.nvim_set_hl(0, 'BufferLineDuplicate', { fg = 'none', bg = theme.black2 })
   api.nvim_set_hl(0, 'BufferLineDuplicateSelected', { fg = theme.red, bg = theme.black })
   api.nvim_set_hl(0, 'BufferLineDuplicateVisible', { fg = theme.blue, bg = theme.black2 })
@@ -227,8 +231,8 @@ function ColorMyCmp()
   api.nvim_set_hl(0, 'CmpItemAbbr', { fg = theme.white })
   api.nvim_set_hl(0, 'CmpItemAbbrMatch', { fg = theme.blue, bold = true })
   api.nvim_set_hl(0, 'CmpBorder', { fg = theme.grey })
-  api.nvim_set_hl(0, 'CmpDocBorder', { fg = theme.darker_black, bg = theme.darker_black })
-  api.nvim_set_hl(0, 'CmPmenu', { bg = theme.darker_black })
+  api.nvim_set_hl(0, 'CmpDocBorder', { fg = theme.darker_black, bg = transparent and 'none' or theme.darker_black })
+  api.nvim_set_hl(0, 'CmPmenu', { bg = transparent and 'none' or theme.darker_black })
   -- cmp item kinds
   api.nvim_set_hl(0, 'CmpItemKindConstant', { fg = theme.base09 })
   api.nvim_set_hl(0, 'CmpItemKindFunction', { fg = theme.base0D })
@@ -298,14 +302,19 @@ function ColorMyLSP()
 end
 
 function ColorMyTelescope()
-  api.nvim_set_hl(0, 'TelescopeBorder', { fg = theme.darker_black, bg = theme.darker_black })
-  api.nvim_set_hl(0, 'TelescopePromptBorder', { fg = theme.black2, bg = theme.black2 })
-  api.nvim_set_hl(0, 'TelescopePromptNormal', { fg = theme.white, bg = theme.black2 })
-  api.nvim_set_hl(0, 'TelescopePromptPrefix', { fg = theme.red, bg = theme.black2 })
-  api.nvim_set_hl(0, 'TelescopeNormal', { bg = theme.darker_black })
-  api.nvim_set_hl(0, 'TelescopePreviewTitle', { fg = theme.black, bg = theme.green })
-  api.nvim_set_hl(0, 'TelescopePromptTitle', { fg = theme.black, bg = theme.red })
-  api.nvim_set_hl(0, 'TelescopeResultsTitle', { fg = theme.darker_black, bg = theme.darker_black })
+  api.nvim_set_hl(0, 'TelescopeBorder',
+    { fg = transparent and theme.light_grey or theme.darker_black, bg = transparent and 'none' or theme.darker_black })
+  api.nvim_set_hl(0, 'TelescopePromptBorder',
+    { fg = transparent and theme.light_grey or theme.black2, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'TelescopePromptNormal', { fg = theme.white, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'TelescopePromptPrefix', { fg = theme.red, bg = transparent and 'none' or theme.black2 })
+  api.nvim_set_hl(0, 'TelescopeNormal', { bg = transparent and 'none' or theme.darker_black })
+  api.nvim_set_hl(0, 'TelescopePreviewTitle',
+    { fg = transparent and theme.light_grey or theme.black, bg = transparent and 'none' or theme.green })
+  api.nvim_set_hl(0, 'TelescopePromptTitle',
+    { fg = transparent and theme.light_grey or theme.black, bg = transparent and 'none' or theme.red })
+  api.nvim_set_hl(0, 'TelescopeResultsTitle',
+    { fg = transparent and theme.light_grey or theme.darker_black, bg = transparent and 'none' or theme.darker_black })
   api.nvim_set_hl(0, 'TelescopeSelection', { fg = theme.white, bg = theme.black2 })
   api.nvim_set_hl(0, 'TelescopeResultsDiffAdd', { fg = theme.green })
   api.nvim_set_hl(0, 'TelescopeResultsDiffChange', { fg = theme.yellow })
@@ -323,3 +332,5 @@ ColorMyLSP()
 ColorMyBufferline()
 ColorMyMason()
 ColorMyTelescope()
+
+return theme, transparent

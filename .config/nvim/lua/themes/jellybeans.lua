@@ -1,6 +1,7 @@
 local M = {}
 
 M = {
+  theme_name = "jellybeans",
   white = "#e8e8d3",
   darker_black = "#101010",
   black = "#151515", --  nvim bg

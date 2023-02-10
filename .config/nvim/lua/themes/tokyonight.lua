@@ -1,6 +1,7 @@
 local M = {}
 
 M = {
+  theme_name = "tokyonight",
   white = "#c0caf5",
   darker_black = "#16161e",
   black = "#1a1b26", --  nvim bg

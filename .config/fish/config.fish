@@ -3,7 +3,7 @@ abbr -a e nvim
 abbr -a g git
 abbr -a ec 'nvim -c "Telescope file_browser"'
 
-# Set vi mode with jj to escape and jk to type j in insert mode 
+# Set vi mode with jj to escape and jk to type j in insert mode
 set fish_key_bindings fish_user_key_bindings
 
 # change cursor type based on vi mode
@@ -16,6 +16,11 @@ if status --is-interactive
   if ! set -q TMUX
     exec tmux
 	end
+end
+
+# setup skim
+if command -q sk
+  skim_key_bindings
 end
 
 # show directory listing on directory change
@@ -60,11 +65,11 @@ set -g fish_prompt_pwd_dir_length 3
 # Colored man output
 setenv LESS_TERMCAP_mb \e'[01;31m'          # Begin blinking
 setenv LESS_TERMCAP_md \e'[01;38;5;74m'     # Begin bold
-setenv LESS_TERMCAP_me \e'[0m'              # end mode 
-setenv LESS_TERMCAP_se \e'[0m'              # end standout-mode 
-setenv LESS_TERMCAP_so \e'[38;5;246m'       # Begin standout-mode - info box 
+setenv LESS_TERMCAP_me \e'[0m'              # end mode
+setenv LESS_TERMCAP_se \e'[0m'              # end standout-mode
+setenv LESS_TERMCAP_so \e'[38;5;246m'       # Begin standout-mode - info box
 setenv LESS_TERMCAP_ue \e'[0m'              # end underline
-setenv LESS_TERMCAP_us \e'[04;38;5;146m'    # begin underline 
+setenv LESS_TERMCAP_us \e'[04;38;5;146m'    # begin underline
 
 # Fish should not add things to clipboard when killing
 set FISH_CLIPBOARD_CMD "cat"
@@ -72,16 +77,16 @@ set FISH_CLIPBOARD_CMD "cat"
 function fish_mode_prompt
   switch $fish_bind_mode
     case default
-      set_color --bold brgreen 
+      set_color --bold brgreen
       echo 'N'
     case insert
-      set_color --bold brblue 
+      set_color --bold brblue
       echo 'I'
     case replace_one
       set_color --bold green
       echo 'R'
     case visual
-      set_color --bold orange 
+      set_color --bold orange
       echo 'V'
     case '*'
       set_color --bold red
@@ -93,7 +98,7 @@ end
 function fish_prompt
 	set_color brblack
 	echo -n "["(date "+%H:%M")"] "
-	set_color "#d3869b" 
+	set_color "#d3869b"
 	echo -n (hostname)
 	if [ $PWD != $HOME ]
 		set_color brblack
@@ -101,7 +106,7 @@ function fish_prompt
 		set_color yellow
 		echo -n (basename $PWD)
 	end
-	set_color green 
+	set_color green
 	printf '%s ' (__fish_git_prompt)
 	set_color red
 	echo -n '|'

@@ -1,7 +1,17 @@
+local theme, transparent = require('colors')
+-- TODO: Make background transparent for lualine
+local lualine_theme
+
+if theme.theme_name == "tokyonight" then
+  lualine_theme = "palenight"
+elseif theme.theme_name == "jellybeans" then
+  lualine_theme = "powerline"
+end
+
 require('lualine').setup({
   options = {
     icons_enabled = true,
-    theme = 'powerline',
+    theme = lualine_theme,
     section_separators = { left = '', right = '' },
     component_separators = { left = '', right = '' },
     disabled_filetypes = {},
