@@ -1,4 +1,5 @@
-local theme, transparent = require('colors')
+package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/nvim/after/plugin/?.lua"
+local theme, transparent = require("colors")
 -- TODO: Make background transparent for lualine
 local lualine_theme
 
