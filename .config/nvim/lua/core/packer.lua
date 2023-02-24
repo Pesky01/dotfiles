@@ -21,9 +21,7 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
-
   use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
-
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -45,14 +43,10 @@ return require('packer').startup(function(use)
       { 'rafamadriz/friendly-snippets' },
     }
   }
-
   -- Show errors/warnings in separate pane
   use 'folke/trouble.nvim'
-
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" }
-
   use 'nvim-lualine/lualine.nvim'
-
   use 'github/copilot.vim'
 
   -- rust specific lsp stuff (e.g inlay hints)
@@ -63,12 +57,9 @@ return require('packer').startup(function(use)
 
   -- move with your eyeballs
   use 'ggandor/leap.nvim'
-
   use 'windwp/nvim-autopairs'
-
   use 'numToStr/Comment.nvim'
-
-  use 'lervag/vimtex'
+  use { 'lervag/vimtex', ft = 'tex' }
   use {
     'iurimateus/luasnip-latex-snippets.nvim',
     requires = { 'L3MON4D3/LuaSnip', "lervag/vimtex" },

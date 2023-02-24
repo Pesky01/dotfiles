@@ -6,4 +6,5 @@ vim.g.copilot_filetypes = {
   ['lean'] = true,
 }
 
+-- helps with copilot complaining that tab is already mapped
 vim.g.copilot_assume_mapped = true

@@ -1,47 +1,56 @@
-local opt = vim.opt
+-- relative line numbers always
+vim.opt.rnu = true
 
-opt.rnu = true
--- Share clipboard between wsl and windoww (with wslyank)
-opt.clipboard = 'unnamedplus'
+-- Share clipboard between wsl and windows (with wslyank)
+vim.opt.clipboard = 'unnamedplus'
 
--- Indenting
-opt.expandtab = true
-opt.shiftwidth = 2
-opt.smartindent = true
-opt.tabstop = 2
-opt.softtabstop = 2
+-- global status line
+vim.opt.laststatus = 3
 
-opt.ignorecase = true
-opt.smartcase = true
-opt.mouse = 'a'
+-- Indendation/tab settings
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.smartindent = true
+vim.opt.softtabstop = 2
 
--- Numbers
-opt.number = true
-opt.numberwidth = 2
-opt.ruler = false
+-- Ignore case if all lowercase search, otherwise respect case
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- replace "~" eof chars with spaces " "
+vim.opt.fillchars = { eob = ' ' }
+
+-- enable mouse
+vim.opt.mouse = 'a'
+
+-- Number column
+vim.opt.numberwidth = 2
+vim.opt.ruler = false
 
 -- disable nvim intro
-opt.shortmess:append 'sI'
+vim.opt.shortmess:append 'sI'
 
-opt.signcolumn = 'yes'
-opt.splitbelow = true
-opt.splitright = true
-opt.termguicolors = true
-opt.timeoutlen = 400
-opt.undofile = true
+-- column for signs (diagnostics, git, etc)
+vim.opt.signcolumn = 'yes'
 
-opt.swapfile = false
-opt.backup = false
-opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
-opt.undofile = true
-opt.updatetime = 250
+-- pane splitting settings
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
--- auto-wrap comments, don't auto insert comment on o/O and enter
-opt.formatoptions:remove 'cro'
+vim.opt.termguicolors = true
+vim.opt.timeoutlen = 400
+vim.opt.undofile = true
 
-opt.hlsearch = false
-opt.incsearch = true
-opt.colorcolumn = '99'
-opt.cul = true
-opt.scrolloff = 8
-opt.textwidth = 80
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
+vim.opt.undofile = true
+vim.opt.updatetime = 250
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.colorcolumn = '99'
+vim.opt.cul = true
+vim.opt.scrolloff = 8
+vim.opt.textwidth = 80

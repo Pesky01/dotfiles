@@ -2,14 +2,14 @@ local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
 lsp.ensure_installed({
-  'sumneko_lua',
+  'lua_ls',
   'rust_analyzer',
   'pyright',
   'texlab',
 })
 
 -- Fix undefined global 'vim'
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
   settings = {
     Lua = {
       diagnostics = {
@@ -24,7 +24,7 @@ local cmp = require('cmp')
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(),
   ['<C-n>'] = cmp.mapping.select_next_item(),
-  ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+  ['<C-d>'] = cmp.mapping.scroll_docs( -4),
   ['<C-f>'] = cmp.mapping.scroll_docs(4),
   ['<C-Space>'] = cmp.mapping.complete(),
   ['<C-e>'] = cmp.mapping.close(),
@@ -49,7 +49,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<S-Tab>'] = cmp.mapping(function(fallback)
     if cmp.visible() then
       cmp.select_prev_item()
-    elseif require('luasnip').jumpable(-1) then
+    elseif require('luasnip').jumpable( -1) then
       vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
     elseif vim.b._copilot_suggestion ~= nil then
       vim.fn.feedkeys(vim.api.nvim_replace_termcodes(vim.fn['copilot#Accept'](), true, true, true), '')

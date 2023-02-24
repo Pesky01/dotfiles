@@ -1,5 +1,5 @@
 -- Colorscheme I wants
-local theme = require('themes/jellybeans')
+local theme = require('themes/tokyonight')
 local api = vim.api
 local transparent = false
 
