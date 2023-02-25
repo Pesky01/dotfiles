@@ -9,14 +9,14 @@ vim.keymap.set('i', 'jj', '<ESC>')
 vim.keymap.set('i', '<C-b>', '<ESC>^i')
 vim.keymap.set('i', '<C-e>', '<End>')
 
--- normal motions for insert mode
+-- normal (ctrl) + motions for insert mode
 vim.keymap.set('i', '<C-h>', '<Left>')
 vim.keymap.set('i', '<C-j>', '<Down>')
 vim.keymap.set('i', '<C-k>', '<Up>')
 vim.keymap.set('i', '<C-l>', '<Right>')
 
 ----- NORMAL MODE -----
--- move between vim panes using motions
+-- move between vim panes using Ctrl + motions
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')

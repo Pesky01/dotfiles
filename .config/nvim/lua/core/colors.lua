@@ -1,7 +1,7 @@
 -- Colorscheme I wants
 local theme = require('themes/tokyonight')
 local api = vim.api
-local transparent = false
+local transparent = true
 
 function ColorMyTreesitter()
   api.nvim_set_hl(0, '@attribute', { fg = theme.base0A })
