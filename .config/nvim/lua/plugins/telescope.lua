@@ -5,8 +5,8 @@ return {
     version = '0.1.0',
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
-      { '<leader>ff',  '<cmd> Telescope file_browser <CR>',                                      desc = 'Open Telescope at pwd' },
-      { '<leader>cwd', '<cmd> Telescope file_browser path=%:p:h <CR>',                           desc = 'Open Telescope at cwd' },
+      { '<leader>ff',  '<cmd> Telescope file_browser path=%:p:h <CR>',                           desc = 'Open Telescope' },
+      { '<leader>pwd', '<cmd> Telescope file_browser <CR>',                                      desc = 'Open Telescope at pwd' },
       { '<leader>fz',  '<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>', desc = 'Open Telescope file/folder fuzzy finder' },
       { '<leader>fw',  '<cmd> Telescope live_grep <CR>',                                         desc = 'Open Telescope live grep' },
       { '<leader>fb',  '<cmd> Telescope buffers <CR>',                                           desc = 'Open Telescope buffers' },
