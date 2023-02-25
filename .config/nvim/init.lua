@@ -1,6 +1,29 @@
 require('core.mappings')
 require('core.options')
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+  callback = function()
+    vim.opt_local.buflisted = false
+  end
+})
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 60 }
+  end
+})
+
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  pattern = '*',
+  command = [[%s/\s\+$//e]]
+})
+
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+
 -- Bootstraps lazy.nvim
 -- Github Link:
 -- https://github.com/folke/lazy.nvim

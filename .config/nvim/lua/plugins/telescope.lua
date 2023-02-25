@@ -1,6 +1,8 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
+    -- cant lazy load to hijack netrw
+    lazy = false,
     version = '0.1.0',
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
