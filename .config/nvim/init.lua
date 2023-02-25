@@ -22,7 +22,8 @@ require("lazy").setup({
     { import = 'plugins' },
   },
   -- everything is lazy loaded by default, set lazy = false for specific plugins
-  defaults = { lazy = false },
+  -- that need to be loaded asap
+  defaults = { lazy = true },
   checker = { enabled = true },
   performance = {
     cache = { enabled = true },

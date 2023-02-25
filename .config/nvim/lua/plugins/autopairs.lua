@@ -1,6 +1,7 @@
 return {
   {
     'windwp/nvim-autopairs',
+    lazy = false,
     -- opts auto runs setup
     opts = {
       options = {

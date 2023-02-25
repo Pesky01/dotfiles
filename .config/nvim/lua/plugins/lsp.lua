@@ -9,6 +9,7 @@ return {
   },
   {
     'iurimateus/luasnip-latex-snippets.nvim',
+    lazy = false,
     dependencies = { 'L3MON4D3/LuaSnip' },
     config = true,
   },

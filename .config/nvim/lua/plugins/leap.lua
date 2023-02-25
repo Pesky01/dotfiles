@@ -1,6 +1,7 @@
 return {
   {
     'ggandor/leap.nvim',
+    lazy = false,
     opts = {
       options = {
         max_aot_targets = nil,
