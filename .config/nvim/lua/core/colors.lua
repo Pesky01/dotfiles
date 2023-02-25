@@ -1,4 +1,3 @@
--- Colorscheme I wants
 local theme = require('themes/tokyonight')
 local transparent = true
 

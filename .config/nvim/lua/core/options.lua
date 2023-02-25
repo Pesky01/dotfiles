@@ -14,7 +14,6 @@ vim.opt.tabstop = 2
 vim.opt.smartindent = true
 vim.opt.softtabstop = 2
 
--- Ignore case if all lowercase search, otherwise respect case
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
