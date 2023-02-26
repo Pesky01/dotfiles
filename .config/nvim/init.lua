@@ -1,6 +1,3 @@
-require('core.mappings')
-require('core.options')
-
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
@@ -14,6 +11,9 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = '*',
   command = [[%s/\s\+$//e]]
 })
+
+-- Make sure to set 'mapleader' before lazy so your mappings are correct
+vim.g.mapleader = ' '
 
 -- Bootstraps lazy.nvim
 -- Github Link:
@@ -43,7 +43,6 @@ require("lazy").setup({
       disabled_plugins = {
         'gzip',
         'matchit',
-        'matchparen',
         'netrwPlugin',
         'rplugin',
         'tarPlugin',
@@ -54,3 +53,6 @@ require("lazy").setup({
     }
   },
 })
+
+require('core.mappings')
+require('core.options')

@@ -2,6 +2,7 @@ return {
   {
     'github/copilot.vim',
     lazy = false,
+    ft = { 'rust', 'tex', 'lua', 'lean' },
     config = function()
       -- enable copilot for specific filetypes
       vim.g.copilot_filetypes = {

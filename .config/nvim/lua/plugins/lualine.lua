@@ -3,7 +3,6 @@ return {
     'nvim-lualine/lualine.nvim',
     lazy = false,
     config = function()
-      package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/nvim/after/plugin/?.lua"
       local theme, _ = require("core.colors")
       -- TODO: Make background transparent for lualine
       local lualine_theme

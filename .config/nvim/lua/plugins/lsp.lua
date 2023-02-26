@@ -1,11 +1,11 @@
 return {
   {
     'simrat39/rust-tools.nvim',
-    lazy = false,
+    ft = 'rust'
   },
   {
     'julian/lean.nvim',
-    lazy = false,
+    ft = 'lean'
   },
   {
     'iurimateus/luasnip-latex-snippets.nvim',
@@ -16,6 +16,7 @@ return {
   {
     'VonHeikemen/lsp-zero.nvim',
     lazy = false,
+    branch = 'v1.x',
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },

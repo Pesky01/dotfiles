@@ -14,12 +14,20 @@ return {
       { '<leader>fh',  '<cmd> Telescope help_tags <CR>',                                         desc = 'Telescope: Help tags' },
       { '<leader>fo',  '<cmd> Telescope oldfiles <CR>',                                          desc = 'Telescope: Old files' },
       { '<leader>tk',  '<cmd> Telescope keymaps <CR>',                                           desc = 'Telescope: Keymaps' },
+      -- Need to figure out how to make this work with the way i am doing custom
+      -- themes
+      -- { '<leader>th',  '<cmd> Telescope colorscheme <CR>',                                       desc = 'Telescope: Themes' },
       { '<leader>cm',  '<cmd> Telescope git_commits <CR>',                                       desc = 'Telescope: Git commits' },
       { '<leader>gt',  '<cmd> Telescope git_status <CR>',                                        desc = 'Telescope: Git status' },
     },
     config = function()
       local fb_actions = require('telescope').extensions.file_browser.actions
       require('telescope').setup {
+        pickers = {
+          colorscheme = {
+            enable_preview = true
+          }
+        },
         defaults = {
           vimgrep_arguments = {
             'rg',
