@@ -22,7 +22,6 @@
   "nvim-treesitter": { "branch": "master", "commit": "a9f0b1c2ba1d70de9189e1ade0e65346ad08849b" },
   "nvim-web-devicons": { "branch": "master", "commit": "0f23feca2bd08549b779c838b6b1308d1e76df03" },
   "plenary.nvim": { "branch": "master", "commit": "253d34830709d690f013daf2853a9d21ad7accab" },
-  "rainbow_parentheses.vim": { "branch": "master", "commit": "27e7cd73fec9d1162169180399ff8ea9fa28b003" },
   "rust-tools.nvim": { "branch": "master", "commit": "71d2cf67b5ed120a0e31b2c8adb210dd2834242f" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "6eb6bb45b7a9bed94a464a3e1dadfe870459628c" },
   "telescope-undo.nvim": { "branch": "main", "commit": "03ff45fab0c4adad4d252e25b5b194e22caf5b4f" },

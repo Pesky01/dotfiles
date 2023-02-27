@@ -3,14 +3,16 @@ return {
     'nvim-lualine/lualine.nvim',
     lazy = false,
     config = function()
-      local theme, _ = require("core.colors")
+      local theme, _ = require('core.colors')
       -- TODO: Make background transparent for lualine
       local lualine_theme
 
-      if theme.theme_name == "tokyonight" then
-        lualine_theme = "palenight"
-      elseif theme.theme_name == "jellybeans" then
-        lualine_theme = "powerline"
+      if theme.theme_name == 'tokyonight' then
+        lualine_theme = 'palenight'
+      elseif theme.theme_name == 'jellybeans' then
+        lualine_theme = 'powerline'
+      else
+        lualine_theme = 'powerline'
       end
 
       require('lualine').setup({
