@@ -4,7 +4,11 @@ return {
     -- cant lazy load to hijack netrw
     lazy = false,
     version = '0.1.0',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'debugloop/telescope-undo.nvim',
+      'nvim-telescope/telescope-file-browser.nvim',
+    },
     keys = {
       { '<leader>ff',  '<cmd> Telescope file_browser path=%:p:h <CR>',                           desc = 'Telescope: File browser' },
       { '<leader>pwd', '<cmd> Telescope file_browser <CR>',                                      desc = 'Telescope: File browser at pwd' },
@@ -14,6 +18,7 @@ return {
       { '<leader>fh',  '<cmd> Telescope help_tags <CR>',                                         desc = 'Telescope: Help tags' },
       { '<leader>fo',  '<cmd> Telescope oldfiles <CR>',                                          desc = 'Telescope: Old files' },
       { '<leader>tk',  '<cmd> Telescope keymaps <CR>',                                           desc = 'Telescope: Keymaps' },
+      { '<leader>un',  '<cmd> Telescope undo <CR>',                                              desc = 'Telescope: Undo Tree' },
       -- Need to figure out how to make this work with the way i am doing custom
       -- themes
       -- { '<leader>th',  '<cmd> Telescope colorscheme <CR>',                                       desc = 'Telescope: Themes' },
@@ -21,7 +26,6 @@ return {
       { '<leader>gt',  '<cmd> Telescope git_status <CR>',                                        desc = 'Telescope: Git status' },
     },
     config = function()
-      local fb_actions = require('telescope').extensions.file_browser.actions
       require('telescope').setup {
         pickers = {
           colorscheme = {
@@ -82,21 +86,34 @@ return {
             mappings = {
               ['i'] = {},
               ['n'] = {
-                ['<C-r>'] = fb_actions.rename,
-                ['<C-d>'] = fb_actions.remove,
-                ['<C-n>'] = fb_actions.create,
+                ['<C-r>'] = require('telescope').extensions.file_browser.actions.rename,
+                ['<C-d>'] = require('telescope').extensions.file_browser.actions.remove,
+                ['<C-n>'] = require('telescope').extensions.file_browser.actions.create,
               }
             }
-          }
+          },
+          undo = {
+            entry_format = 'State #$ID | $STAT | $TIME',
+            side_by_side = true,
+            mappings = {
+              ['i'] = {
+                ['<cr>'] = require('telescope-undo.actions').yank_additions,
+                ['<S-cr'] = require('telescope-undo.actions').yank_deletions,
+                ['<C-cr>'] = require('telescope-undo.actions').restore,
+              },
+              ['n'] = {
+                ['<cr>'] = require('telescope-undo.actions').yank_additions,
+                ['<S-cr'] = require('telescope-undo.actions').yank_deletions,
+                ['<C-cr>'] = require('telescope-undo.actions').restore,
+              }
+            }
+          },
         },
-        extensions_list = { 'file_browser' }
+        extensions_list = { 'file_browser', 'undo' }
       }
 
       require('telescope').load_extension('file_browser')
+      require('telescope').load_extension('undo')
     end
   },
-  {
-    'nvim-telescope/telescope-file-browser.nvim',
-    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' }
-  }
 }
