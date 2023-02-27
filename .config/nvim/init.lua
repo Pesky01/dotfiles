@@ -12,6 +12,17 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   command = [[%s/\s\+$//e]]
 })
 
+-- Return to last edit position when opening files
+vim.api.nvim_create_autocmd('BufReadPost', {
+  pattern = '*',
+  callback = function()
+    if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line('$') then
+      vim.fn.setpos('.', vim.fn.getpos("'\""))
+      vim.api.nvim_feedkeys('zz', 'n', true)
+    end
+  end
+})
+
 -- Make sure to set 'mapleader' before lazy so your mappings are correct
 vim.g.mapleader = ' '
 

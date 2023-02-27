@@ -1,4 +1,4 @@
--- Map leader is set in init.lua
+-- leader is set in init.lua
 ----- INSERT MODE -----
 vim.keymap.set('i', 'jj', '<ESC>', { desc = 'jj to escape to normal mode' })
 

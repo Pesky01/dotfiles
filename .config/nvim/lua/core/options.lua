@@ -1,13 +1,10 @@
--- relative line numbers always
 vim.opt.rnu = true
 
--- Share clipboard between wsl and windows (with wslyank)
 vim.opt.clipboard = 'unnamedplus'
 
 -- global status line
 vim.opt.laststatus = 3
 
--- Indendation/tab settings
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -30,7 +27,6 @@ vim.opt.ruler = false
 -- disable nvim intro
 vim.opt.shortmess:append 'sI'
 
--- column for signs (diagnostics, git, etc)
 vim.opt.signcolumn = 'yes'
 
 -- pane splitting settings

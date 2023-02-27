@@ -4,7 +4,6 @@ return {
     lazy = false,
     ft = { 'rust', 'tex', 'lua', 'lean' },
     config = function()
-      -- enable copilot for specific filetypes
       vim.g.copilot_filetypes = {
         ['*'] = false,
         ['rust'] = true,

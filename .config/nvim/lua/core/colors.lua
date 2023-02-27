@@ -104,16 +104,7 @@ function ColorMyDefaults()
   vim.api.nvim_set_hl(0, 'NormalFloat', { bg = transparent and 'none' or theme.darker_black })
   vim.api.nvim_set_hl(0, 'NvimInternalError', { fg = theme.red })
   vim.api.nvim_set_hl(0, 'WinSeparator', { fg = theme.line })
-  -- Packer
-  vim.api.nvim_set_hl(0, 'PackerPackageName', { fg = theme.red })
-  vim.api.nvim_set_hl(0, 'PackerSuccess', { fg = theme.green })
-  vim.api.nvim_set_hl(0, 'PackerStatusSuccess', { fg = theme.base08 })
-  vim.api.nvim_set_hl(0, 'PackerStatusCommit', { fg = theme.blue })
-  vim.api.nvim_set_hl(0, 'PackerProgress', { fg = theme.blue })
-  vim.api.nvim_set_hl(0, 'PackerOutput', { fg = theme.red })
-  vim.api.nvim_set_hl(0, 'PackerStatus', { fg = theme.blue })
-  vim.api.nvim_set_hl(0, 'PackerHash', { fg = theme.blue })
-  -- Transparent -> bg = 'none'
+
   vim.api.nvim_set_hl(0, 'Normal', { fg = theme.base05, bg = transparent and 'none' or theme.base00 })
   vim.api.nvim_set_hl(0, 'NonText', { fg = theme.base03 })
   vim.api.nvim_set_hl(0, 'Bold', { bold = true })
@@ -147,7 +138,7 @@ function ColorMyDefaults()
   vim.api.nvim_set_hl(0, 'CursorColumn', { fg = theme.base01, sp = 'none' })
   vim.api.nvim_set_hl(0, 'CursorLine', { bg = 'none', sp = 'none' })
   vim.api.nvim_set_hl(0, 'QuickFixLine', { bg = theme.base01, sp = 'none' })
-  -- spell
+
   vim.api.nvim_set_hl(0, 'SpellBad', { undercurl = true, sp = theme.base08 })
   vim.api.nvim_set_hl(0, 'SpellLocal', { undercurl = true, sp = theme.base0C })
   vim.api.nvim_set_hl(0, 'SpellCap', { undercurl = true, sp = theme.base0D })
@@ -229,13 +220,12 @@ function ColorMyBufferline()
 end
 
 function ColorMyCmp()
-  -- nvim cmp
   vim.api.nvim_set_hl(0, 'CmpItemAbbr', { fg = theme.white })
   vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { fg = theme.blue, bold = true })
   vim.api.nvim_set_hl(0, 'CmpBorder', { fg = theme.grey })
   vim.api.nvim_set_hl(0, 'CmpDocBorder', { fg = theme.darker_black, bg = transparent and 'none' or theme.darker_black })
   vim.api.nvim_set_hl(0, 'CmPmenu', { bg = transparent and 'none' or theme.darker_black })
-  -- cmp item kinds
+
   vim.api.nvim_set_hl(0, 'CmpItemKindConstant', { fg = theme.base09 })
   vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { fg = theme.base0D })
   vim.api.nvim_set_hl(0, 'CmpItemKindIdentifier', { fg = theme.base08 })
@@ -269,7 +259,7 @@ function ColorMyGit()
   vim.api.nvim_set_hl(0, 'DiffModified', { fg = theme.orange })
   vim.api.nvim_set_hl(0, 'DiffDelete', { fg = theme.red })
   vim.api.nvim_set_hl(0, 'DiffRemoved', { fg = theme.red })
-  -- git commits
+
   vim.api.nvim_set_hl(0, 'gitcommitOverflow', { fg = theme.base08 })
   vim.api.nvim_set_hl(0, 'gitcommitSummary', { fg = theme.base08 })
   vim.api.nvim_set_hl(0, 'gitcommitComment', { fg = theme.base03 })
@@ -288,11 +278,10 @@ function ColorMyGit()
 end
 
 function ColorMyLSP()
-  -- LSP references
   vim.api.nvim_set_hl(0, 'LspReferenceText', { fg = theme.darker_black, bg = theme.white })
   vim.api.nvim_set_hl(0, 'LspReferenceRead', { fg = theme.darker_black, bg = theme.white })
   vim.api.nvim_set_hl(0, 'LspReferenceWrite', { fg = theme.darker_black, bg = theme.white })
-  -- LSP diagnostics
+
   vim.api.nvim_set_hl(0, 'DiagnosticHint', { fg = theme.purple })
   vim.api.nvim_set_hl(0, 'DiagnosticError', { fg = theme.red })
   vim.api.nvim_set_hl(0, 'DiagnosticWarn', { fg = theme.yellow })
