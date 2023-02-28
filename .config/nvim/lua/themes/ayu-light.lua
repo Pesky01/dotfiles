@@ -66,8 +66,6 @@ M.polish_hl = {
   ["@tag.attribute"] = { fg = M.base_30.base0F },
 }
 
-M = require("base46").override_theme(M, "ayu-light")
-
 vim.opt.bg = "light"
 
 return M

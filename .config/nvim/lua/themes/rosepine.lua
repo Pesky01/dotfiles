@@ -54,8 +54,6 @@ M.base_16 = {
   base0F = "#e5e5e5",
 }
 
-M = require("base46").override_theme(M, "rosepine")
-
 vim.opt.bg = "dark"
 
 return M

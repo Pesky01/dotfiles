@@ -60,6 +60,4 @@ M.polish_hl = {
   PmenuSel = { fg = M.base_30.black, bg = M.base_30.red },
 }
 
-M = require("base46").override_theme(M, "tomorrow_night")
-
 return M

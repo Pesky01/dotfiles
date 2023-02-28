@@ -71,6 +71,4 @@ M.polish_hl = {
 
 vim.opt.bg = "light"
 
-M = require("base46").override_theme(M, "everforest_light")
-
 return M
