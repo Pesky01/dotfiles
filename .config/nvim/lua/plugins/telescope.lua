@@ -8,6 +8,7 @@ return {
       'nvim-lua/plenary.nvim',
       'debugloop/telescope-undo.nvim',
       'nvim-telescope/telescope-file-browser.nvim',
+      'ThePrimeagen/harpoon',
     },
     keys = {
       { '<leader>ff',  '<cmd> Telescope file_browser path=%:p:h <CR>',                           desc = 'Telescope: File browser' },
@@ -19,11 +20,13 @@ return {
       { '<leader>fo',  '<cmd> Telescope oldfiles <CR>',                                          desc = 'Telescope: Old files' },
       { '<leader>tk',  '<cmd> Telescope keymaps <CR>',                                           desc = 'Telescope: Keymaps' },
       { '<leader>un',  '<cmd> Telescope undo <CR>',                                              desc = 'Telescope: Undo Tree' },
-      -- Need to figure out how to make this work with the way i am doing custom
-      -- themes
+      { '<leader>ha',  '<cmd> Telescope harpoon marks <CR>',                                     desc = 'Telescope: Harpoon menu' },
+      -- TODO: Figure out how to make this work for custom themes
       -- { '<leader>th',  '<cmd> Telescope colorscheme <CR>',                                       desc = 'Telescope: Themes' },
       { '<leader>cm',  '<cmd> Telescope git_commits <CR>',                                       desc = 'Telescope: Git commits' },
       { '<leader>gt',  '<cmd> Telescope git_status <CR>',                                        desc = 'Telescope: Git status' },
+      -- harpoon
+      { '<leader>m',   function() require('harpoon.mark').add_file() end,                        desc = 'Harpoon: Mark a file' },
     },
     config = function()
       require('telescope').setup {
@@ -109,11 +112,12 @@ return {
             }
           },
         },
-        extensions_list = { 'file_browser', 'undo' }
+        extensions_list = { 'file_browser', 'undo', 'harpoon' }
       }
 
       require('telescope').load_extension('file_browser')
       require('telescope').load_extension('undo')
+      require('telescope').load_extension('harpoon')
     end
   },
 }

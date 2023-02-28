@@ -1,6 +1,6 @@
 -- leader is set in init.lua
 ----- INSERT MODE -----
-vim.keymap.set('i', 'jj', '<ESC>', { desc = 'jj to escape to normal mode' })
+vim.keymap.set('i', 'jj', '<ESC>', { desc = 'Escape to normal mode' })
 
 vim.keymap.set('i', '<C-b>', '<ESC>^i', { desc = 'Go to beginning of line' })
 vim.keymap.set('i', '<C-e>', '<End>', { desc = 'Go to end of line' })
