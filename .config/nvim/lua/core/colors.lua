@@ -79,16 +79,6 @@ function ColorMySyntaxStandard()
   vim.api.nvim_set_hl(0, 'Typedef', { fg = theme.base_16.base0A })
 end
 
-function ColorMyMason()
-  vim.api.nvim_set_hl(0, 'MasonHeader', { bg = theme.base_30.red })
-  vim.api.nvim_set_hl(0, 'MasonHighlight', { fg = theme.base_30.blue })
-  vim.api.nvim_set_hl(0, 'MasonHighlightBlock', { fg = theme.base_30.black, bg = theme.base_30.green })
-  vim.api.nvim_set_hl(0, 'MasonHighlightBlockBold', { link = 'MasonHighlightBlock' })
-  vim.api.nvim_set_hl(0, 'MasonHeaderSecondary', { link = 'MasonHighlightBlock' })
-  vim.api.nvim_set_hl(0, 'MasonMuted', { fg = theme.base_30.light_grey })
-  vim.api.nvim_set_hl(0, 'MasonMutedBlock', { fg = theme.base_30.light_grey, bg = theme.base_30.one_bg })
-end
-
 function ColorMyDefaults()
   vim.api.nvim_set_hl(0, 'MatchWord', { bg = theme.base_30.grey, fg = theme.base_30.white })
   vim.api.nvim_set_hl(0, 'Pmenu', { bg = theme.base_30.one_bg })
@@ -146,37 +136,6 @@ function ColorMyDefaults()
   vim.api.nvim_set_hl(0, 'healthSuccess', { bg = theme.base_30.green, fg = theme.base_30.black })
 end
 
-function ColorMyDevicons()
-  vim.api.nvim_set_hl(0, 'DevIconDefault', { fg = theme.base_30.red })
-  vim.api.nvim_set_hl(0, 'DevIconc', { fg = theme.base_30.blue })
-  vim.api.nvim_set_hl(0, 'DevIconcss', { fg = theme.base_30.blue })
-  vim.api.nvim_set_hl(0, 'DevIcondeb', { fg = theme.base_30.cyan })
-  vim.api.nvim_set_hl(0, 'DevIconDockerfile', { fg = theme.base_30.cyan })
-  vim.api.nvim_set_hl(0, 'DevIconhtml', { fg = theme.base_30.baby_pink })
-  vim.api.nvim_set_hl(0, 'DevIconjpeg', { fg = theme.base_30.dark_purple })
-  vim.api.nvim_set_hl(0, 'DevIconjpg', { fg = theme.base_30.dark_purple })
-  vim.api.nvim_set_hl(0, 'DevIconjs', { fg = theme.base_30.sun })
-  vim.api.nvim_set_hl(0, 'DevIconkt', { fg = theme.base_30.orange })
-  vim.api.nvim_set_hl(0, 'DevIconlock', { fg = theme.base_30.red })
-  vim.api.nvim_set_hl(0, 'DevIconlua', { fg = theme.base_30.blue })
-  vim.api.nvim_set_hl(0, 'DevIconmp3', { fg = theme.base_30.white })
-  vim.api.nvim_set_hl(0, 'DevIconmp4', { fg = theme.base_30.white })
-  vim.api.nvim_set_hl(0, 'DevIconout', { fg = theme.base_30.white })
-  vim.api.nvim_set_hl(0, 'DevIconpng', { fg = theme.base_30.dark_purple })
-  vim.api.nvim_set_hl(0, 'DevIconpy', { fg = theme.base_30.cyan })
-  vim.api.nvim_set_hl(0, 'DevIcontoml', { fg = theme.base_30.blue })
-  vim.api.nvim_set_hl(0, 'DevIconts', { fg = theme.base_30.teal })
-  vim.api.nvim_set_hl(0, 'DevIconttf', { fg = theme.base_30.white })
-  vim.api.nvim_set_hl(0, 'DevIconrb', { fg = theme.base_30.pink })
-  vim.api.nvim_set_hl(0, 'DevIconrpm', { fg = theme.base_30.orange })
-  vim.api.nvim_set_hl(0, 'DevIconvue', { fg = theme.base_30.vibrant_green })
-  vim.api.nvim_set_hl(0, 'DevIconwoff', { fg = theme.base_30.white })
-  vim.api.nvim_set_hl(0, 'DevIconwoff2', { fg = theme.base_30.white })
-  vim.api.nvim_set_hl(0, 'DevIconxz', { fg = theme.base_30.sun })
-  vim.api.nvim_set_hl(0, 'DevIconzip', { fg = theme.base_30.sun })
-  vim.api.nvim_set_hl(0, 'DevIconZig', { fg = theme.base_30.orange })
-end
-
 function ColorMyBufferline()
   vim.api.nvim_set_hl(0, 'BufferLineBackground',
     { fg = theme.base_30.light_grey, bg = transparent and 'none' or theme.base_30.black2 })
@@ -222,16 +181,46 @@ function ColorMyBufferline()
   vim.api.nvim_set_hl(0, 'BufferLineTabClose',
     { fg = theme.base_30.red, bg = transparent and 'none' or theme.base_30.black })
 
-  -- why not work???
-  -- vim.api.nvim_set_hl(0, 'BufferLineDevIconDefaultSelected', { bg = theme.base_30.white })
-  -- vim.api.nvim_set_hl(0, 'BufferLineDevIconDefaultInactive', { bg = theme.base_30.white })
-
   vim.api.nvim_set_hl(0, 'BufferLineDuplicate', { fg = 'none', bg = theme.base_30.black2 })
   vim.api.nvim_set_hl(0, 'BufferLineDuplicateSelected', { fg = theme.base_30.red, bg = theme.base_30.black })
   vim.api.nvim_set_hl(0, 'BufferLineDuplicateVisible', { fg = theme.base_30.blue, bg = theme.base_30.black2 })
 
   vim.api.nvim_set_hl(0, 'BufferLineRightCustomAreaText1', { fg = theme.base_30.white })
   vim.api.nvim_set_hl(0, 'BufferLineRightCustomAreaText2', { fg = theme.base_30.red })
+  -- why not work???
+  -- vim.api.nvim_set_hl(0, 'BufferLineDevIconDefaultSelected', { bg = theme.base_30.white })
+  -- vim.api.nvim_set_hl(0, 'BufferLineDevIconDefaultInactive', { bg = theme.base_30.white })
+end
+
+function ColorMyDevicons()
+  vim.api.nvim_set_hl(0, 'DevIconDefault', { fg = theme.base_30.red })
+  vim.api.nvim_set_hl(0, 'DevIconc', { fg = theme.base_30.blue })
+  vim.api.nvim_set_hl(0, 'DevIconcss', { fg = theme.base_30.blue })
+  vim.api.nvim_set_hl(0, 'DevIcondeb', { fg = theme.base_30.cyan })
+  vim.api.nvim_set_hl(0, 'DevIconDockerfile', { fg = theme.base_30.cyan })
+  vim.api.nvim_set_hl(0, 'DevIconhtml', { fg = theme.base_30.baby_pink })
+  vim.api.nvim_set_hl(0, 'DevIconjpeg', { fg = theme.base_30.dark_purple })
+  vim.api.nvim_set_hl(0, 'DevIconjpg', { fg = theme.base_30.dark_purple })
+  vim.api.nvim_set_hl(0, 'DevIconjs', { fg = theme.base_30.sun })
+  vim.api.nvim_set_hl(0, 'DevIconkt', { fg = theme.base_30.orange })
+  vim.api.nvim_set_hl(0, 'DevIconlock', { fg = theme.base_30.red })
+  vim.api.nvim_set_hl(0, 'DevIconlua', { fg = theme.base_30.blue })
+  vim.api.nvim_set_hl(0, 'DevIconmp3', { fg = theme.base_30.white })
+  vim.api.nvim_set_hl(0, 'DevIconmp4', { fg = theme.base_30.white })
+  vim.api.nvim_set_hl(0, 'DevIconout', { fg = theme.base_30.white })
+  vim.api.nvim_set_hl(0, 'DevIconpng', { fg = theme.base_30.dark_purple })
+  vim.api.nvim_set_hl(0, 'DevIconpy', { fg = theme.base_30.cyan })
+  vim.api.nvim_set_hl(0, 'DevIcontoml', { fg = theme.base_30.blue })
+  vim.api.nvim_set_hl(0, 'DevIconts', { fg = theme.base_30.teal })
+  vim.api.nvim_set_hl(0, 'DevIconttf', { fg = theme.base_30.white })
+  vim.api.nvim_set_hl(0, 'DevIconrb', { fg = theme.base_30.pink })
+  vim.api.nvim_set_hl(0, 'DevIconrpm', { fg = theme.base_30.orange })
+  vim.api.nvim_set_hl(0, 'DevIconvue', { fg = theme.base_30.vibrant_green })
+  vim.api.nvim_set_hl(0, 'DevIconwoff', { fg = theme.base_30.white })
+  vim.api.nvim_set_hl(0, 'DevIconwoff2', { fg = theme.base_30.white })
+  vim.api.nvim_set_hl(0, 'DevIconxz', { fg = theme.base_30.sun })
+  vim.api.nvim_set_hl(0, 'DevIconzip', { fg = theme.base_30.sun })
+  vim.api.nvim_set_hl(0, 'DevIconZig', { fg = theme.base_30.orange })
 end
 
 function ColorMyCmp()
@@ -293,21 +282,6 @@ function ColorMyGit()
   vim.api.nvim_set_hl(0, 'gitcommitSelectedFile', { fg = theme.base_16.base08, bold = true })
 end
 
-function ColorMyLSP()
-  vim.api.nvim_set_hl(0, 'LspReferenceText', { fg = theme.base_30.darker_black, bg = theme.base_30.white })
-  vim.api.nvim_set_hl(0, 'LspReferenceRead', { fg = theme.base_30.darker_black, bg = theme.base_30.white })
-  vim.api.nvim_set_hl(0, 'LspReferenceWrite', { fg = theme.base_30.darker_black, bg = theme.base_30.white })
-
-  vim.api.nvim_set_hl(0, 'DiagnosticHint', { fg = theme.base_30.purple })
-  vim.api.nvim_set_hl(0, 'DiagnosticError', { fg = theme.base_30.red })
-  vim.api.nvim_set_hl(0, 'DiagnosticWarn', { fg = theme.base_30.yellow })
-  vim.api.nvim_set_hl(0, 'DiagnosticInformation', { fg = theme.base_30.green })
-  vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = theme.base_30.black, bg = theme.base_30.green })
-
-  vim.api.nvim_set_hl(0, 'RenamerTitle', { fg = theme.base_30.black, bg = theme.base_30.red })
-  vim.api.nvim_set_hl(0, 'RenamerBorder', { fg = theme.base_30.red })
-end
-
 function ColorMyTelescope()
   vim.api.nvim_set_hl(0, 'TelescopeBorder',
     {
@@ -345,10 +319,38 @@ function ColorMyTelescope()
   vim.api.nvim_set_hl(0, 'TelescopeResultsDiffDelete', { fg = theme.base_30.red })
 end
 
+function ColorMyLSP()
+  vim.api.nvim_set_hl(0, 'LspReferenceText', { fg = theme.base_30.darker_black, bg = theme.base_30.white })
+  vim.api.nvim_set_hl(0, 'LspReferenceRead', { fg = theme.base_30.darker_black, bg = theme.base_30.white })
+  vim.api.nvim_set_hl(0, 'LspReferenceWrite', { fg = theme.base_30.darker_black, bg = theme.base_30.white })
+
+  vim.api.nvim_set_hl(0, 'DiagnosticHint', { fg = theme.base_30.purple })
+  vim.api.nvim_set_hl(0, 'DiagnosticError', { fg = theme.base_30.red })
+  vim.api.nvim_set_hl(0, 'DiagnosticWarn', { fg = theme.base_30.yellow })
+  vim.api.nvim_set_hl(0, 'DiagnosticInformation', { fg = theme.base_30.green })
+  vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = theme.base_30.black, bg = theme.base_30.green })
+
+  vim.api.nvim_set_hl(0, 'RenamerTitle', { fg = theme.base_30.black, bg = theme.base_30.red })
+  vim.api.nvim_set_hl(0, 'RenamerBorder', { fg = theme.base_30.red })
+
+  vim.api.nvim_set_hl(0, 'FidgetTitle', { fg = theme.base_30.cyan, bg = 'none' })
+  vim.api.nvim_set_hl(0, 'FidgetTask', { bg = 'none' })
+end
+
+function ColorMyMason()
+  vim.api.nvim_set_hl(0, 'MasonHeader', { bg = theme.base_30.red })
+  vim.api.nvim_set_hl(0, 'MasonHighlight', { fg = theme.base_30.blue })
+  vim.api.nvim_set_hl(0, 'MasonHighlightBlock', { fg = theme.base_30.black, bg = theme.base_30.green })
+  vim.api.nvim_set_hl(0, 'MasonHighlightBlockBold', { link = 'MasonHighlightBlock' })
+  vim.api.nvim_set_hl(0, 'MasonHeaderSecondary', { link = 'MasonHighlightBlock' })
+  vim.api.nvim_set_hl(0, 'MasonMuted', { fg = theme.base_30.light_grey })
+  vim.api.nvim_set_hl(0, 'MasonMutedBlock', { fg = theme.base_30.light_grey, bg = theme.base_30.one_bg })
+end
+
+ColorMySyntaxStandard()
 ColorMyTreesitter()
 ColorMyDevicons()
 ColorMyDefaults()
-ColorMySyntaxStandard()
 ColorMyBufferline()
 ColorMyCmp()
 ColorMyGit()

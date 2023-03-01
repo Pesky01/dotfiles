@@ -1,12 +1,36 @@
--- take an input string for the desc and return opts with that desc
 local function opts(bufnr, desc)
   return { buffer = bufnr, remap = false, desc = desc }
 end
 
-
 return {
   {
-    'simrat39/rust-tools.nvim',
+    'j-hui/fidget.nvim',
+    lazy = false,
+    opts = {
+      text = {
+        spinner = 'dots',
+      },
+      timer = {
+        spinner_rate = 50,
+      },
+      window = {
+        blend = 0,
+      }
+    }
+  },
+  {
+    'folke/neodev.nvim',
+    lazy = false,
+    config = true,
+  },
+  {
+    -- requires vimtex/treesitter
+    'iurimateus/luasnip-latex-snippets.nvim',
+    ft = 'tex',
+    dependencies = { 'L3MON4D3/LuaSnip', 'nvim-treesitter/nvim-treesitter' },
+    opts = {
+      use_treesitter = true,
+    }
   },
   {
     'julian/lean.nvim',
@@ -31,13 +55,53 @@ return {
         lsp = { on_attach = lean_on_attach },
       })
     end,
-
   },
   {
-    'iurimateus/luasnip-latex-snippets.nvim',
-    lazy = false,
-    dependencies = 'L3MON4D3/LuaSnip',
-    config = true,
+    'simrat39/rust-tools.nvim',
+    ft = 'rust',
+    config = function()
+      local rust_tools_settings = {
+        -- need separate on_attach for rust-tools
+        on_attach = function(client, bufnr)
+          -- Disable semantic highlighting
+          client.server_capabilities.semanticTokensProvider = nil
+
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts(bufnr, 'LSP: Go to definition'))
+          vim.keymap.set('n', 'K', require('rust-tools').hover_actions.hover_actions, opts(bufnr, 'LSP: Hover'))
+          vim.keymap.set('n', '<leader>vws', vim.lsp.buf.workspace_symbol, opts(bufnr, 'LSP: Workspace symbols'))
+          vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts(bufnr, 'LSP: Open diagnostics'))
+          vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts(bufnr, 'LSP: Next diagnostic'))
+          vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts(bufnr, 'LSP: Previous diagnostic'))
+          vim.keymap.set('n', '<space>vca', require('rust-tools').code_action_group.code_action_group,
+            opts(bufnr, 'LSP: Code action'))
+          vim.keymap.set('n', '<leader>vrr', vim.lsp.buf.references, opts(bufnr, 'LSP: References'))
+          vim.keymap.set('i', '<C-sh>', vim.lsp.buf.signature_help, opts(bufnr, 'LSP: Signature help'))
+          vim.keymap.set('n', '<C-x>', vim.lsp.buf.format, opts(bufnr, 'LSP: Format'))
+          vim.keymap.set('n', '<leader>vrn', vim.lsp.buf.rename, opts(bufnr, 'LSP: Rename'))
+        end,
+        settings = {
+          ['rust-analyzer'] = {
+            checkOnSave = {
+              allFeatures = true,
+              command = 'clippy',
+            }
+          }
+        },
+      }
+
+      local rust_lsp = require('lsp-zero').build_options('rust_analyzer', rust_tools_settings)
+
+      require('rust-tools').setup({
+        server = rust_lsp,
+        tools = {
+          inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = '',
+            other_hints_prefix = '',
+          },
+        }
+      })
+    end
   },
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -69,6 +133,7 @@ return {
         'lua_ls',
         'rust_analyzer',
         'pyright',
+        'texlab',
       })
 
       -- Fix undefined global 'vim'
@@ -141,6 +206,7 @@ return {
         sign_icons = {},
       })
 
+      -- for all lsp not rust and lean
       lsp.on_attach(function(client, bufnr)
         -- Disable semantic highlighting
         client.server_capabilities.semanticTokensProvider = nil
@@ -158,48 +224,7 @@ return {
         vim.keymap.set('n', '<leader>vrn', vim.lsp.buf.rename, opts(bufnr, 'LSP: Rename'))
       end)
 
-      local rust_analyzer_settings = {
-        on_attach = function(client, bufnr)
-          -- Disable semantic highlighting
-          client.server_capabilities.semanticTokensProvider = nil
-
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts(bufnr, 'LSP: Go to definition'))
-          vim.keymap.set('n', 'K', require('rust-tools').hover_actions.hover_actions, opts(bufnr, 'LSP: Hover'))
-          vim.keymap.set('n', '<leader>vws', vim.lsp.buf.workspace_symbol, opts(bufnr, 'LSP: Workspace symbols'))
-          vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts(bufnr, 'LSP: Open diagnostics'))
-          vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts(bufnr, 'LSP: Next diagnostic'))
-          vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts(bufnr, 'LSP: Previous diagnostic'))
-          vim.keymap.set('n', '<space>vca', require('rust-tools').code_action_group.code_action_group,
-            opts(bufnr, 'LSP: Code action'))
-          vim.keymap.set('n', '<leader>vrr', vim.lsp.buf.references, opts(bufnr, 'LSP: References'))
-          vim.keymap.set('i', '<C-sh>', vim.lsp.buf.signature_help, opts(bufnr, 'LSP: Signature help'))
-          vim.keymap.set('n', '<C-x>', vim.lsp.buf.format, opts(bufnr, 'LSP: Format'))
-          vim.keymap.set('n', '<leader>vrn', vim.lsp.buf.rename, opts(bufnr, 'LSP: Rename'))
-        end,
-        settings = {
-          ['rust-analyzer'] = {
-            checkOnSave = {
-              allFeatures = true,
-              command = 'clippy',
-            }
-          }
-        },
-      }
-
-      local rust_lsp = lsp.build_options('rust_analyzer', rust_analyzer_settings)
-
       lsp.setup()
-
-      require('rust-tools').setup({
-        server = rust_lsp,
-        tools = {
-          inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = '',
-            other_hints_prefix = '',
-          },
-        }
-      })
 
       vim.diagnostic.config({
         virtual_text = true,

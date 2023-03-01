@@ -87,7 +87,11 @@ return {
           file_browser = {
             hijack_netrw = true,
             mappings = {
-              ['i'] = {},
+              ['i'] = {
+                ['<C-r>'] = require('telescope').extensions.file_browser.actions.rename,
+                ['<C-d>'] = require('telescope').extensions.file_browser.actions.remove,
+                ['<C-n>'] = require('telescope').extensions.file_browser.actions.create,
+              },
               ['n'] = {
                 ['<C-r>'] = require('telescope').extensions.file_browser.actions.rename,
                 ['<C-d>'] = require('telescope').extensions.file_browser.actions.remove,

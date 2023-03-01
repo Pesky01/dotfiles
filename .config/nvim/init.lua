@@ -2,7 +2,7 @@
 vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
   callback = function()
-    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 60 }
+    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 90 }
   end
 })
 
@@ -25,6 +25,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
 -- Make sure to set 'mapleader' before lazy so your mappings are correct
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Bootstraps lazy.nvim
 -- Github Link:
@@ -36,7 +37,7 @@ if not vim.loop.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim',
-    -- '--branch=stable',
+    '--branch=stable',
     lazypath,
   })
 end
