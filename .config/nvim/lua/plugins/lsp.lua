@@ -15,7 +15,7 @@ local function lsp_keymaps(bufnr, rust_tools)
   vim.keymap.set('n', '<leader>vrn', vim.lsp.buf.rename, opts(bufnr, 'LSP: Rename'))
 
   vim.keymap.set('n', '<leader>vws', vim.lsp.buf.workspace_symbol, opts(bufnr, 'LSP: Workspace symbols'))
-  -- vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts(bufnr, 'LSP: Open diagnostics'))
+  vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts(bufnr, 'LSP: Open diagnostics'))
   vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts(bufnr, 'LSP: Next diagnostic'))
   vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts(bufnr, 'LSP: Previous diagnostic'))
   vim.keymap.set('n', '<leader>vrr', vim.lsp.buf.references, opts(bufnr, 'LSP: References'))
@@ -80,7 +80,6 @@ return {
     ft = 'rust',
     config = function()
       local rust_tools_settings = {
-        -- need separate on_attach for rust-tools
         on_attach = function(client, bufnr)
           -- Disable semantic highlighting
           client.server_capabilities.semanticTokensProvider = nil
@@ -213,7 +212,7 @@ return {
         sign_icons = {},
       })
 
-      -- for all lsp not rust and lean
+      -- for all lsp not rust or lean
       lsp.on_attach(function(client, bufnr)
         -- Disable semantic highlighting
         client.server_capabilities.semanticTokensProvider = nil
