@@ -12,6 +12,9 @@ return {
       { '<leader>5', '<cmd>lua require("bufferline").go_to_buffer(5)<CR>', desc = 'Bufferline: Go to 5' },
       { '<leader>6', '<cmd>lua require("bufferline").go_to_buffer(6)<CR>', desc = 'Bufferline: Go to 6' },
       { '<leader>7', '<cmd>lua require("bufferline").go_to_buffer(7)<CR>', desc = 'Bufferline: Go to 7' },
+      { '<C-n>',     '<cmd> bnext<CR>',                                    desc = 'Bufferline: Next buffer' },
+      { '<C-p>',     '<cmd> bprev<CR>',                                    desc = 'Bufferline: Previous buffer' },
+      { '<C-x>',     '<cmd> bd<CR>',                                       desc = 'Bufferline: Close buffer' },
     },
     opts = {
       options = {

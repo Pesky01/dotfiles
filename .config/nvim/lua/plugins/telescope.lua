@@ -9,6 +9,7 @@ return {
       'debugloop/telescope-undo.nvim',
       'nvim-telescope/telescope-file-browser.nvim',
       'ThePrimeagen/harpoon',
+      'xiyaowong/telescope-emoji.nvim',
     },
     keys = {
       { '<leader>ff',  '<cmd> Telescope file_browser path=%:p:h <CR>',                           desc = 'Telescope: File browser' },
@@ -21,6 +22,9 @@ return {
       { '<leader>tk',  '<cmd> Telescope keymaps <CR>',                                           desc = 'Telescope: Keymaps' },
       { '<leader>un',  '<cmd> Telescope undo <CR>',                                              desc = 'Telescope: Undo Tree' },
       { '<leader>ha',  '<cmd> Telescope harpoon marks <CR>',                                     desc = 'Telescope: Harpoon menu' },
+
+      { '<leader>fp',  '<cmd> Telescope planets <CR>',                                           desc = 'Telescope: Planets' },
+      { '<leader>fe',  '<cmd> Telescope emoji <CR>',                                             desc = 'Telescope: Emoji' },
       -- TODO: Figure out how to make this work for custom themes
       -- { '<leader>th',  '<cmd> Telescope colorscheme <CR>',                                       desc = 'Telescope: Themes' },
       { '<leader>cm',  '<cmd> Telescope git_commits <CR>',                                       desc = 'Telescope: Git commits' },
@@ -122,6 +126,7 @@ return {
       require('telescope').load_extension('file_browser')
       require('telescope').load_extension('undo')
       require('telescope').load_extension('harpoon')
+      require('telescope').load_extension('emoji')
     end
   },
 }

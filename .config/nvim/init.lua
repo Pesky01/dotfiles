@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Remove trailing whitespace
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
   command = [[%s/\s\+$//e]]
 })
@@ -65,6 +65,8 @@ require("lazy").setup({
     }
   },
 })
+
+vim.cmd([[au BufNewFile,BufRead *.wgsl set filetype=wgsl]])
 
 require('core.mappings')
 require('core.options')

@@ -6,27 +6,27 @@ local function lsp_keymaps(bufnr, rust_tools)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts(bufnr, 'LSP: Go to declaration'))
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts(bufnr, 'LSP: Go to definition'))
 
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts(bufnr, 'LSP: Go to implementation'))
+  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts(bufnr, 'LSP: Go to implementation'))
   -- vim.keymap.set('n', '<C-sh>', vim.lsp.buf.signature_help, opts(bufnr, 'LSP: Signature help'))
   -- vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts(bufnr, 'LSP: Add workspace folder'))
   -- vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts(bufnr, 'LSP: Remove workspace folder'))
   -- vim.keymap.set('n', '<leader>wl', vim.lsp.buf.list_workspace_folders, opts(bufnr, 'LSP: List workspace folders'))
   -- vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts(bufnr, 'LSP: Type definition'))
-  vim.keymap.set('n', '<leader>vrn', vim.lsp.buf.rename, opts(bufnr, 'LSP: Rename'))
+  vim.keymap.set('n', '<leader>crn', vim.lsp.buf.rename, opts(bufnr, 'LSP: Rename'))
 
-  vim.keymap.set('n', '<leader>vws', vim.lsp.buf.workspace_symbol, opts(bufnr, 'LSP: Workspace symbols'))
-  vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts(bufnr, 'LSP: Open diagnostics'))
+  vim.keymap.set('n', '<leader>cws', vim.lsp.buf.workspace_symbol, opts(bufnr, 'LSP: Workspace symbols'))
+  vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, opts(bufnr, 'LSP: Open diagnostics'))
   vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts(bufnr, 'LSP: Next diagnostic'))
   vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts(bufnr, 'LSP: Previous diagnostic'))
-  vim.keymap.set('n', '<leader>vrr', vim.lsp.buf.references, opts(bufnr, 'LSP: References'))
-  vim.keymap.set('n', '<C-x>', vim.lsp.buf.format, opts(bufnr, 'LSP: Format'))
+  vim.keymap.set('n', '<leader>crr', vim.lsp.buf.references, opts(bufnr, 'LSP: References'))
+  vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, opts(bufnr, 'LSP: Format'))
 
   if rust_tools then
-    vim.keymap.set('n', '<space>vca', require('rust-tools').code_action_group.code_action_group,
+    vim.keymap.set('n', '<space>cca', require('rust-tools').code_action_group.code_action_group,
       opts(bufnr, 'LSP: Code action'))
     vim.keymap.set('n', 'K', require('rust-tools').hover_actions.hover_actions, opts(bufnr, 'LSP: Hover'))
   else
-    vim.keymap.set('n', '<leader>vca', vim.lsp.buf.code_action, opts(bufnr, 'LSP: Code action'))
+    vim.keymap.set('n', '<leader>cca', vim.lsp.buf.code_action, opts(bufnr, 'LSP: Code action'))
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts(bufnr, 'LSP: Hover'))
   end
 end
@@ -222,7 +222,24 @@ return {
       lsp.setup()
 
       vim.diagnostic.config({
-        virtual_text = true,
+        severity_sort = true,
+        virtual_text = { prefix = '', spacing = 4 },
+      })
+
+      vim.api.nvim_create_autocmd('CursorHold', {
+        pattern = '*',
+        callback = function()
+          local float_opts = {
+            border = 'rounded',
+            focusable = false,
+            source = 'always',
+            prefix = ' ',
+            scope = 'cursor',
+            close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' }
+          }
+
+          vim.diagnostic.open_float(nil, float_opts)
+        end
       })
     end
   }
