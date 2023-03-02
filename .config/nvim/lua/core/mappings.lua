@@ -5,6 +5,8 @@ vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to bottom pane' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to top pane' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to right pane' })
 
+vim.keymap.set('n', '<C-s>', '<cmd> w<CR>', { desc = 'Save file' })
+
 vim.keymap.set('n', '<leader>sp', ':split<Return><C-w>w', { desc = 'Split pane horizontally' })
 vim.keymap.set('n', '<leader>sv', ':vsplit<Return><C-w>w', { desc = 'Split pane vertically' })
 

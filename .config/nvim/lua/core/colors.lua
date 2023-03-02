@@ -89,7 +89,7 @@ function ColorMyDefaults()
   vim.api.nvim_set_hl(0, 'Comment', { fg = theme.base_30.grey_fg })
   vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = theme.base_30.white })
   vim.api.nvim_set_hl(0, 'LineNr', { fg = theme.base_30.grey })
-  -- Floating Windows
+
   vim.api.nvim_set_hl(0, 'FloatBorder', { fg = theme.base_30.blue })
   vim.api.nvim_set_hl(0, 'NormalFloat', { bg = transparent and 'none' or theme.base_30.darker_black })
   vim.api.nvim_set_hl(0, 'NvimInternalError', { fg = theme.base_30.red })

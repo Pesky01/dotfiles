@@ -1,5 +1,6 @@
--- relative line numbers always
+-- absolute line number for current line, relative otherwise
 vim.opt.rnu = true
+vim.opt.nu = true
 
 -- sync clipboptard between OS and nvim
 vim.opt.clipboard = 'unnamedplus'

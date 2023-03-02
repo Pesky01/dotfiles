@@ -34,11 +34,6 @@ return {
     },
     config = function()
       require('telescope').setup {
-        pickers = {
-          colorscheme = {
-            enable_preview = true
-          }
-        },
         defaults = {
           vimgrep_arguments = {
             'rg',

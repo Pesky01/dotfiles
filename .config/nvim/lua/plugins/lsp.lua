@@ -53,29 +53,6 @@ return {
     config = true,
   },
   {
-    -- requires vimtex/treesitter
-    'iurimateus/luasnip-latex-snippets.nvim',
-    ft = 'tex',
-    dependencies = { 'L3MON4D3/LuaSnip', 'nvim-treesitter/nvim-treesitter' },
-    opts = {
-      use_treesitter = true,
-    }
-  },
-  {
-    'julian/lean.nvim',
-    ft = 'lean',
-    config = function()
-      local lean_on_attach = function(_, bufnr)
-        lsp_keymaps(bufnr, false)
-      end
-
-      require('lean').setup({
-        abbreviations = { builtin = true },
-        lsp = { on_attach = lean_on_attach },
-      })
-    end,
-  },
-  {
     'simrat39/rust-tools.nvim',
     ft = 'rust',
     config = function()
@@ -209,7 +186,14 @@ return {
 
       lsp.set_preferences({
         suggest_lsp_servers = false,
-        sign_icons = {},
+        -- if sign_icons = {}, use E, W, H instead of unicode for diagnostics in
+        -- sign column
+        sign_icons = {
+          error = '',
+          warn = '',
+          hint = '',
+          info = '',
+        },
       })
 
       -- for all lsp not rust or lean
@@ -223,9 +207,10 @@ return {
 
       vim.diagnostic.config({
         severity_sort = true,
-        virtual_text = { prefix = '', spacing = 4 },
+        virtual_text = true,
       })
 
+      -- Show diagnostics in floating window when text cursor is hovering over
       vim.api.nvim_create_autocmd('CursorHold', {
         pattern = '*',
         callback = function()
