@@ -13,7 +13,7 @@ return {
     },
     keys = {
       { '<leader>ff',  '<cmd> Telescope file_browser path=%:p:h <CR>',                           desc = 'Telescope: File browser' },
-      { '<leader>pwd', '<cmd> Telescope file_browser <CR>',                                      desc = 'Telescope: File browser at pwd' },
+      { '<leader>fwd', '<cmd> Telescope file_browser <CR>',                                      desc = 'Telescope: File browser at pwd' },
       { '<leader>fz',  '<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>', desc = 'Telescope: File/folder fuzzy finder' },
       { '<leader>fw',  '<cmd> Telescope live_grep <CR>',                                         desc = 'Telescope: Live grep' },
       { '<leader>fb',  '<cmd> Telescope buffers <CR>',                                           desc = 'Telescope: Buffers' },
