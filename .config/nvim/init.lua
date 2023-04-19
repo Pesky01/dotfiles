@@ -23,18 +23,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end
 })
 
--- -- only format with prettier
--- vim.api.nvim_create_autocmd('BufWritePre', {
---   pattern = { '*.js', '*.jsx', '*.svelte', '*.tsx', '*.ts' },
---   callback = function()
---     vim.lsp.buf.format({
---       filter = function(client)
---         return client.name == 'prettier'
---       end
---     })
---   end
--- })
-
 -- Make sure to set 'mapleader' before lazy so your mappings are correct
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '

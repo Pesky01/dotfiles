@@ -38,6 +38,7 @@ vim.keymap.set('v', '<', '<gv', { desc = 'Shift left' })
 vim.keymap.set('v', '>', '>gv', { desc = 'Shift right' })
 vim.keymap.set('v', ';', ':', { desc = 'Enter command mode' })
 
+
 -- better search
 vim.keymap.set('n', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next search result' })
 vim.keymap.set('x', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next search result' })

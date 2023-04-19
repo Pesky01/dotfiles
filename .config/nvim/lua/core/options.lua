@@ -58,8 +58,8 @@ vim.opt.updatetime = 250
 vim.opt.timeout = true
 vim.opt.timeoutlen = 400
 
--- better completion experience
-vim.opt.completeopt = 'menu,menuone,noinsert'
+-- set by cmp in lsp.lua
+-- vim.opt.completeopt = 'menu,menuone,noinsert'
 
 -- highlight search
 vim.opt.hlsearch = false
@@ -68,4 +68,4 @@ vim.opt.incsearch = true
 vim.opt.colorcolumn = '100'
 vim.opt.cul = true
 vim.opt.scrolloff = 8
-vim.opt.textwidth = 80
+vim.opt.textwidth = 99

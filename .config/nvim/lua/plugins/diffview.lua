@@ -1,6 +1,6 @@
 return {
   'sindrets/diffview.nvim',
-  dependencies = { 'kyazdani42/nvim-web-devicons', 'nvim-lua/plenary.nvim' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'nvim-lua/plenary.nvim' },
   cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
   keys = {
     { '<leader>do', '<cmd> DiffviewOpen<CR>',        desc = 'Diffview: Open' },

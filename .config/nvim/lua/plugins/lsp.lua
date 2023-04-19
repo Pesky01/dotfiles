@@ -90,7 +90,16 @@ return {
             checkOnSave = {
               allFeatures = true,
               command = 'clippy',
-            }
+              extraArgs = { '--all', '--', '-W', 'clippy::all' },
+            },
+            cargo = {
+              buildScripts = {
+                enable = true,
+              },
+            },
+            procMacro = {
+              enable = true,
+            },
           }
         },
       }
@@ -146,6 +155,7 @@ return {
         'rust_analyzer',
         'svelte',
         'tailwindcss',
+        'taplo',
         'texlab',
         'tsserver'
       })

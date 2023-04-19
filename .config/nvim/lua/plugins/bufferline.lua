@@ -2,7 +2,7 @@ return {
   'akinsho/bufferline.nvim',
   event = 'BufReadPost',
   version = 'v3.*',
-  dependencies = 'kyazdani42/nvim-web-devicons',
+  dependencies = 'nvim-tree/nvim-web-devicons',
   keys = {
     { '<leader>1', '<cmd>lua require("bufferline").go_to_buffer(1)<CR>', desc = 'Bufferline: Go to 1' },
     { '<leader>2', '<cmd>lua require("bufferline").go_to_buffer(2)<CR>', desc = 'Bufferline: Go to 2' },
