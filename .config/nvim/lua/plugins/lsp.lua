@@ -26,6 +26,7 @@ end
 return {
   {
     'j-hui/fidget.nvim',
+    tag = 'legacy',
     event = 'BufReadPost',
     opts = {
       text = {
@@ -57,7 +58,8 @@ return {
   },
   {
     'julian/lean.nvim',
-    ft = 'lean',
+    event = { 'BufReadPre', 'BufNewFile' },
+    -- ft = 'lean',
     opts = function()
       local lean_on_attach = function(_, bufnr)
         lsp_keymaps(bufnr)
@@ -148,6 +150,7 @@ return {
       lsp.preset('recommended')
 
       lsp.ensure_installed({
+        'cssls',
         'eslint',
         'jsonls',
         'lua_ls',
@@ -157,7 +160,7 @@ return {
         'tailwindcss',
         'taplo',
         'texlab',
-        'tsserver'
+        'tsserver',
       })
 
       -- Fix undefined global 'vim'
@@ -245,7 +248,7 @@ return {
         },
       })
 
-      -- for all lsp not rust or lean
+      -- for all lsp not rust
       lsp.on_attach(function(_, bufnr)
         -- Disable semantic highlighting, looks worse on some filetypes, could manually apply it to
         -- some filetypes

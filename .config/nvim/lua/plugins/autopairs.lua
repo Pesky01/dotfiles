@@ -19,6 +19,9 @@ return {
       'svelte',
     },
     opts = {
+      autotag = {
+        enable = true,
+      },
       filetypes = {
         'html',
         'javascript',

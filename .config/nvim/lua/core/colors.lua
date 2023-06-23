@@ -319,6 +319,7 @@ function ColorMyTelescope()
   vim.api.nvim_set_hl(0, 'TelescopeResultsDiffAdd', { fg = theme.base_30.green })
   vim.api.nvim_set_hl(0, 'TelescopeResultsDiffChange', { fg = theme.base_30.yellow })
   vim.api.nvim_set_hl(0, 'TelescopeResultsDiffDelete', { fg = theme.base_30.red })
+  -- vim.api.nvim_set_hl(0, 'TelescopeResults')
 end
 
 function ColorMyLSP()
