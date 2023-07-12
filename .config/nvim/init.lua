@@ -28,20 +28,19 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.termguicolors = true
 
--- Bootstraps lazy.nvim
--- Github Link:
--- https://github.com/folke/lazy.nvim
-local lazypath = vim.fn.stdpath('data') .. 'lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+-- Auto-install lazy.nvim if not present
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     'git',
     'clone',
     '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim',
+    'https://github.com/folke/lazy.nvim.git',
     '--branch=stable',
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({

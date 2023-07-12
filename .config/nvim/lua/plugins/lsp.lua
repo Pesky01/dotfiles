@@ -58,8 +58,7 @@ return {
   },
   {
     'julian/lean.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    -- ft = 'lean',
+    ft = 'lean',
     opts = function()
       local lean_on_attach = function(_, bufnr)
         lsp_keymaps(bufnr)
@@ -121,6 +120,27 @@ return {
     end
   },
   {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    ft = {
+      'javascript',
+      'javascriptreact',
+      'typescriptreact',
+      'python',
+    },
+    opts = function()
+      local null_ls = require('null-ls')
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.black
+        }
+      })
+    end
+  },
+  {
     'VonHeikemen/lsp-zero.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     branch = 'v1.x',
@@ -144,13 +164,16 @@ return {
 
       -- Neovim
       { 'folke/neodev.nvim', opts = { experimental = { pathStrict = true } } },
+
     },
     opts = function()
       local lsp = require('lsp-zero')
+
       lsp.preset('recommended')
 
       lsp.ensure_installed({
         'cssls',
+        'elmls',
         'eslint',
         'jsonls',
         'lua_ls',
@@ -161,6 +184,16 @@ return {
         'taplo',
         'texlab',
         'tsserver',
+      })
+
+      lsp.format_mapping('<C-x>', {
+        format_opts = {
+          async = false,
+          timeout_ms = 10000,
+        },
+        servers = {
+          ['null_ls'] = { 'javascript', 'typescript', 'lua', 'python' },
+        }
       })
 
       -- Fix undefined global 'vim'
@@ -250,9 +283,6 @@ return {
 
       -- for all lsp not rust
       lsp.on_attach(function(_, bufnr)
-        -- Disable semantic highlighting, looks worse on some filetypes, could manually apply it to
-        -- some filetypes
-        -- client.server_capabilities.semanticTokensProvider = nil
         vim.keymap.set('n', '<leader>vca', vim.lsp.buf.code_action, opts(bufnr, 'LSP: Code action'))
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts(bufnr, 'LSP: Hover'))
         lsp_keymaps(bufnr)

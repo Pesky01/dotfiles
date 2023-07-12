@@ -10,7 +10,7 @@ return {
         'c',
         'css',
         'fish',
-        'help',
+        'elm',
         'html',
         'javascript',
         'lua',

@@ -1,5 +1,5 @@
 local theme = require('themes/tokyonight')
-local transparent = true
+local transparent = false
 
 function ColorMyTreesitter()
   vim.api.nvim_set_hl(0, '@attribute', { fg = theme.base_16.base0A })
@@ -315,7 +315,7 @@ function ColorMyTelescope()
       fg = transparent and theme.base_30.light_grey or theme.base_30.darker_black,
       bg = transparent and 'none' or theme.base_30.darker_black
     })
-  vim.api.nvim_set_hl(0, 'TelescopeSelection', { fg = theme.base_30.white, bg = theme.base_30.darker_black })
+  vim.api.nvim_set_hl(0, 'TelescopeSelection', { fg = theme.base_30.white, bg = theme.base_30.light_grey })
   vim.api.nvim_set_hl(0, 'TelescopeResultsDiffAdd', { fg = theme.base_30.green })
   vim.api.nvim_set_hl(0, 'TelescopeResultsDiffChange', { fg = theme.base_30.yellow })
   vim.api.nvim_set_hl(0, 'TelescopeResultsDiffDelete', { fg = theme.base_30.red })
