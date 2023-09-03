@@ -5,16 +5,8 @@ end
 local function lsp_keymaps(bufnr)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts(bufnr, 'LSP: Go to declaration'))
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts(bufnr, 'LSP: Go to definition'))
-
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts(bufnr, 'LSP: Go to implementation'))
-  -- I don't use these really
-  -- vim.keymap.set('n', '<C-sh>', vim.lsp.buf.signature_help, opts(bufnr, 'LSP: Signature help'))
-  -- vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts(bufnr, 'LSP: Add workspace folder'))
-  -- vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts(bufnr, 'LSP: Remove workspace folder'))
-  -- vim.keymap.set('n', '<leader>wl', vim.lsp.buf.list_workspace_folders, opts(bufnr, 'LSP: List workspace folders'))
-  -- vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts(bufnr, 'LSP: Type definition'))
   vim.keymap.set('n', '<leader>vrn', vim.lsp.buf.rename, opts(bufnr, 'LSP: Rename'))
-
   vim.keymap.set('n', '<leader>vws', vim.lsp.buf.workspace_symbol, opts(bufnr, 'LSP: Workspace symbols'))
   vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts(bufnr, 'LSP: Open diagnostics'))
   vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts(bufnr, 'LSP: Next diagnostic'))
@@ -135,11 +127,41 @@ return {
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.black
+          null_ls.builtins.formatting.black.with {
+            extra_args = { '--line-length', '100' },
+          },
         }
       })
     end
   },
+  -- {
+  --   'mhartington/formatter.nvim',
+  --   ft = {
+  --     'javascript',
+  --     'javascriptreact',
+  --     'typescriptreact',
+  --     'python',
+  --   },
+  --   opts = function()
+  --     local util = require('formatter.util')
+  --
+  --     require('formatter').setup({
+  --       logging = true,
+  --       log_level = vim.log.levels.WARN,
+  --       filetype = {
+  --         lua = {
+  --           require('formatter.filetypes.lua').stylua,
+  --         },
+  --         typescriptreact = {
+  --           require('formatter.filetypes.typescript').prettier
+  --         },
+  --         python = {
+  --           require('formatter.filetypes.python').black
+  --         },
+  --       }
+  --     })
+  --   end
+  -- },
   {
     'VonHeikemen/lsp-zero.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -282,7 +304,8 @@ return {
       })
 
       -- for all lsp not rust
-      lsp.on_attach(function(_, bufnr)
+      lsp.on_attach(function(client, bufnr)
+        client.server_capabilities.semanticTokensProvider = nil
         vim.keymap.set('n', '<leader>vca', vim.lsp.buf.code_action, opts(bufnr, 'LSP: Code action'))
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts(bufnr, 'LSP: Hover'))
         lsp_keymaps(bufnr)

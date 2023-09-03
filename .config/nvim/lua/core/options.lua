@@ -3,7 +3,7 @@ vim.opt.rnu = true
 vim.opt.nu = true
 
 -- sync clipboptard between OS and nvim
--- vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 
 -- transparent cmp menu (doesn't completely work)
 vim.opt.pumblend = 20
@@ -68,10 +68,4 @@ vim.opt.incsearch = true
 vim.opt.colorcolumn = '100'
 vim.opt.cul = true
 vim.opt.scrolloff = 8
-vim.opt.textwidth = 99
-
--- Use 4 spaces for Elm files
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "elm",
-  command = "setlocal shiftwidth=4 tabstop=4 softtabstop=4",
-})
+vim.opt.textwidth = 100
