@@ -1,8 +1,54 @@
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+
 return {
-  'github/copilot.vim',
-  event = { 'BufReadPre', 'BufNewFile' },
-  config = function()
-    -- helps with copilot complaining that tab is already mapped
-    vim.g.copilot_assume_mapped = true
-  end
+  {
+    "zbirenbaum/copilot.lua",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      suggestion = {
+        accept = false,
+        auto_trigger = true,
+      },
+      filetypes = {
+        lua = true,
+        typescript = true,
+        rust = true,
+      },
+    },
+  },
+  {
+    -- Make tab completion work with cmp and copilot
+    "hrsh7th/nvim-cmp",
+    opts = {
+      mapping = {
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          elseif require("copilot.suggestion").is_visible() then
+            require("copilot.suggestion").accept()
+          elseif luasnip.expandable() then
+            luasnip.expand()
+          else
+            fallback()
+          end
+        end, {
+          "i",
+          "s",
+        }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+          elseif luasnip.expandable() then
+            luasnip.expand()
+          else
+            fallback()
+          end
+        end, {
+          "i",
+          "s",
+        }),
+      },
+    },
+  },
 }

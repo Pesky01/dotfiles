@@ -1,193 +1,113 @@
+local Util = require("lazyvim.util")
+
 return {
-  'nvim-telescope/telescope.nvim',
-  -- cant lazy load to hijack netrw
-  lazy = false,
+  "nvim-telescope/telescope.nvim",
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    'debugloop/telescope-undo.nvim',
-    'nvim-telescope/telescope-file-browser.nvim',
-    'ThePrimeagen/harpoon',
+    "nvim-lua/plenary.nvim",
+    "ThePrimeagen/harpoon",
   },
-  keys = {
-    {
-      '<leader>ff',
-      '<cmd> Telescope file_browser path=%:p:h <CR>',
-      desc =
-      'Telescope: File browser'
-    },
-    {
-      '<leader>fwd',
-      '<cmd> Telescope file_browser <CR>',
-      desc =
-      'Telescope: File browser at pwd'
-    },
-    {
-      '<leader>fd',
-      '<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>',
-      desc =
-      'Telescope: File/folder fuzzy finder'
-    },
-    {
-      '<leader>fg',
-      '<cmd> Telescope live_grep <CR>',
-      desc =
-      'Telescope: Live grep'
-    },
-    {
-      '<leader>fb',
-      '<cmd> Telescope buffers <CR>',
-      desc =
-      'Telescope: Buffers'
-    },
-    {
-      '<leader>fh',
-      '<cmd> Telescope help_tags <CR>',
-      desc =
-      'Telescope: Help tags'
-    },
-    {
-      '<leader>fo',
-      '<cmd> Telescope oldfiles <CR>',
-      desc =
-      'Telescope: Old files'
-    },
-    {
-      '<leader>tk',
-      '<cmd> Telescope keymaps <CR>',
-      desc =
-      'Telescope: Keymaps'
-    },
-    {
-      '<leader>un',
-      '<cmd> Telescope undo <CR>',
-      desc =
-      'Telescope: Undo Tree'
-    },
-    {
-      '<leader>ha',
-      '<cmd> Telescope harpoon marks <CR>',
-      desc =
-      'Telescope: Harpoon menu'
-    },
-    -- TODO: Figure out how to make this work for custom themes
-    -- { '<leader>th',  '<cmd> Telescope colorscheme <CR>',                                       desc = 'Telescope: Themes' },
-    {
-      '<leader>cm',
-      '<cmd> Telescope git_commits <CR>',
-      desc =
-      'Telescope: Git commits'
-    },
-    {
-      '<leader>gt',
-      '<cmd> Telescope git_status <CR>',
-      desc =
-      'Telescope: Git status'
-    },
-    -- harpoon
-    {
-      '<leader>m',
-      function() require('harpoon.mark').add_file() end,
-      desc =
-      'Harpoon: Mark a file'
-    },
-  },
-  config = function()
-    require('telescope').setup {
-      pickers = {
-        colorscheme = {
-          enable_preview = true
-        }
+  keys = function()
+    return {
+      { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Telescope: Command history" },
+      { "<leader>ff", Util.telescope("files"), desc = "Telescope: Find Files (root dir)" },
+      {
+        "<leader>fF",
+        Util.telescope("files", { cwd = false }),
+        desc = "Telescope: Find Files (cwd)",
       },
+      {
+        "<leader>fd",
+        "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<cr>",
+        desc = "Telescope: Find File/folder",
+      },
+      { "<leader>fg", Util.telescope("live_grep"), desc = "Telescope: Grep (root dir)" },
+      {
+        "<leader>fG",
+        Util.telescope("live_grep", { cwd = false }),
+        desc = "Telescope: Grep (cwd)",
+      },
+      { "<leader>km", "<cmd>Telescope keymaps<cr>", desc = "Telescope: Keymaps" },
+      { "<leader>hm", "<cmd>Telescope harpoon marks<cr>", desc = "Telescope: Open harpoon marks" },
+      {
+        "<leader>th",
+        Util.telescope("colorscheme", { enable_preview = true }),
+        desc = "Telescope: Colorscheme with preview",
+      },
+      {
+        "<leader>ha",
+        function()
+          require("harpoon.mark").add_file()
+        end,
+        desc = "Harpoon: Harpoon a file",
+      },
+    }
+  end,
+  config = function()
+    local actions = require("telescope.actions")
+
+    local find_files_no_ignore = function()
+      local action_state = require("telescope.actions.state")
+      local line = action_state.get_current_line()
+      Util.telescope("find_files", { no_ignore = true, default_text = line })()
+    end
+    local find_files_with_hidden = function()
+      local action_state = require("telescope.actions.state")
+      local line = action_state.get_current_line()
+      Util.telescope("find_files", { hidden = true, default_text = line })()
+    end
+
+    require("telescope").setup({
+      pickers = { colorscheme = { enable_preview = true } },
       defaults = {
-        vimgrep_arguments = {
-          'rg',
-          '--color=never',
-          '--no-heading',
-          '--with-filename',
-          '--line-number',
-          '--column',
-          '--smart-case',
-          -- '--hidden',
-        },
-        prompt_prefix = '   ',
-        selection_caret = '  ',
-        entry_prefix = '  ',
-        initial_mode = 'normal',
-        selection_strategy = 'reset',
-        sorting_strategy = 'ascending',
-        layout_strategy = 'horizontal',
+        initial_mode = "normal",
+        prompt_prefix = "  ",
+        entry_prefix = "  ",
+        selection_caret = " ",
+        selection_strategy = "reset",
+        sorting_strategy = "ascending",
+        layout_strategy = "horizontal",
         layout_config = {
           horizontal = {
-            prompt_position = 'top',
+            prompt_position = "top",
             preview_width = 0.55,
-            results_width = 0.8,
           },
-          vertical = {
-            mirror = false,
-          },
-          width = 0.87,
-          height = 0.80,
+          width = 0.85,
+          height = 0.8,
           preview_cutoff = 120,
         },
-        file_sorter = require('telescope.sorters').get_fuzzy_file,
-        file_ignore_patterns = { 'node_modules' },
-        generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
-        path_display = { 'truncate' },
-        winblend = 0,
-        border = {},
-        borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-        color_devicons = true,
-        set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-        file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-        grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-        qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-        -- Developer configurations: Not meant for general override
-        buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
+        -- open files in the first window that is an actual file.
+        -- use the current window if no other window is available.
+        get_selection_window = function()
+          local wins = vim.api.nvim_list_wins()
+          table.insert(wins, 1, vim.api.nvim_get_current_win())
+          for _, win in ipairs(wins) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].buftype == "" then
+              return win
+            end
+          end
+          return 0
+        end,
         mappings = {
-          n = { ['q'] = require('telescope.actions').close },
-        },
-      },
-      extensions = {
-        file_browser = {
-          hijack_netrw = true,
-          mappings = {
-            ['i'] = {
-              ['<C-r>'] = require('telescope').extensions.file_browser.actions.rename,
-              ['<C-d>'] = require('telescope').extensions.file_browser.actions.remove,
-              ['<C-n>'] = require('telescope').extensions.file_browser.actions.create,
-            },
-            ['n'] = {
-              ['<C-r>'] = require('telescope').extensions.file_browser.actions.rename,
-              ['<C-d>'] = require('telescope').extensions.file_browser.actions.remove,
-              ['<C-n>'] = require('telescope').extensions.file_browser.actions.create,
-            }
-          }
-        },
-        undo = {
-          use_delta = true,
-          side_by_side = true,
-          diff_context_lines = 8,
-          entry_format = 'State #$ID, $STAT, $TIME',
-          mappings = {
-            ['i'] = {
-              ['<C-a><CR>'] = require('telescope-undo.actions').yank_additions,
-              ['<C-d><CR>'] = require('telescope-undo.actions').yank_deletions,
-              ['<C-y><CR>'] = require('telescope-undo.actions').restore,
-            },
-            ['n'] = {
-              ['<C-a><CR>'] = require('telescope-undo.actions').yank_additions,
-              ['<C-d><CR>'] = require('telescope-undo.actions').yank_deletions,
-              ['<C-y><CR>'] = require('telescope-undo.actions').restore,
-            }
-          }
+          i = {
+            -- ["<c-t>"] = open_with_trouble,
+            -- ["<a-t>"] = open_selected_with_trouble,
+            -- ["<a-i>"] = find_files_no_ignore,
+            -- ["<a-h>"] = find_files_with_hidden,
+            -- ["<C-Down>"] = actions.cycle_history_next,
+            -- ["<C-Up>"] = actions.cycle_history_prev,
+            -- ["<C-f>"] = actions.preview_scrolling_down,
+            -- ["<C-b>"] = actions.preview_scrolling_up,
+          },
+          n = {
+            ["q"] = actions.close,
+          },
         },
       },
 
-      extensions_list = { 'file_browser', 'undo', 'harpoon' }
-    }
+      extensions_list = { "harpoon" },
+    })
 
-    require('telescope').load_extension('file_browser')
-    require('telescope').load_extension('undo')
-    require('telescope').load_extension('harpoon')
-  end
+    require("telescope").load_extension("harpoon")
+  end,
 }
