@@ -3,6 +3,15 @@ local luasnip = require("luasnip")
 
 return {
   {
+    "echasnovski/mini.comment",
+    opts = {
+      mappings = {
+        comment_line = "<leader>/",
+        comment_visual = "<leader>/",
+      },
+    },
+  },
+  {
     "zbirenbaum/copilot.lua",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
