@@ -23,6 +23,7 @@ return {
         lua = true,
         typescript = true,
         rust = true,
+        dart = true,
       },
     },
   },
@@ -57,6 +58,9 @@ return {
           "i",
           "s",
         }),
+      },
+      experimental = {
+        ghost_text = false,
       },
     },
   },

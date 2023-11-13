@@ -46,7 +46,6 @@ return {
     opts = function()
       return {
         abbreviations = { builtin = true },
-        -- lsp = { on_attach = require("lean").on_attach },
       }
     end,
   },
