@@ -4,4 +4,6 @@ return {
   { "rcarriga/nvim-notify", enabled = false },
   { "zbirenbaum/copilot-cmp", enabled = false },
   { "dashboard-nvim", enabled = false },
+  { "nvim-treesitter/nvim-treesitter-context", enabled = false },
+  { "echasnovski/mini.indentscope", enabled = false },
 }

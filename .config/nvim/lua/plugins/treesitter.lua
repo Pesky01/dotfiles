@@ -13,7 +13,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
     indent = {
-      disable = { "dart" },
+      disable = { "dart", "ocaml" },
     },
   },
 }

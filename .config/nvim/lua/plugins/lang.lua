@@ -3,8 +3,9 @@ return {
     "simrat39/rust-tools.nvim",
     opts = {
       tools = {
+        on_initialized = function() end,
         inlay_hints = {
-          show_parameter_hints = true,
+          show_parameter_hints = false,
           parameter_hints_prefix = "",
           other_hints_prefix = "",
         },
@@ -13,10 +14,11 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    --@class PluginLspOpts
     opts = {
-      -- servers = {
-      --   dartls = {},
-      -- },
+      servers = {
+        ocamllsp = {},
+      },
     },
   },
   {
@@ -24,6 +26,7 @@ return {
     opts = {
       formatters_by_ft = {
         dart = { "dart_format" },
+        ocaml = { "ocamlformat" },
       },
     },
   },

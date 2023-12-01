@@ -1,14 +1,16 @@
 return {
   "folke/tokyonight.nvim",
   opts = {
-    style = "storm",
+    style = "night",
     transparent = false,
-    -- styles = {
-    --   sidebars = "transparent",
-    --   floats = "transparent",
-    -- }
-    -- Borderless Telescope
+    styles = {
+      comments = { italic = false },
+      keywords = { italic = false },
+      -- sidebars = "transparent",
+      -- floats = "transparent",
+    },
     on_highlights = function(hl, c)
+      -- Borderless Telescope
       local prompt = "#2d3149"
       hl.TelescopeNormal = {
         bg = c.bg_dark,
@@ -36,6 +38,14 @@ return {
       hl.TelescopeResultsTitle = {
         bg = c.bg_dark,
         fg = c.bg_dark,
+      }
+      -- highlight current line number
+      hl.CursorLineNr = {
+        fg = c.orange,
+      }
+      -- remove currentline highlight bg so it looks transparent
+      hl.CursorLine = {
+        bg = "NONE"
       }
     end,
   },

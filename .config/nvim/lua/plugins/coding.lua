@@ -22,8 +22,10 @@ return {
       filetypes = {
         lua = true,
         typescript = true,
-        rust = true,
-        dart = true,
+        rust = false,
+        dart = false,
+        lean = false,
+        ocaml = false,
       },
     },
   },

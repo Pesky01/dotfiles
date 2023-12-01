@@ -1,51 +1,31 @@
+local Util = require("lazyvim.util")
+
 return {
   {
     "nvim-lualine/lualine.nvim",
-    opts = function()
-      return {
-        options = {
-          theme = "tokyonight",
-          icons_enabled = true,
-          section_separators = { left = "", right = "" },
-          component_separators = { left = "", right = "" },
-        },
-        sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch" },
-          lualine_c = {
-            {
-              "filename",
-              file_status = true,
-              path = 0,
-            },
+    opts = {
+      options = {
+        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
+      },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch" },
+        lualine_c = {
+          {
+            "diagnostics",
+            symbols = { error = " ", warn = " ", info = " ", hint = " " },
           },
-          lualine_x = {
-            {
-              "diagnostics",
-              symbols = { error = " ", warn = " ", info = " ", hint = " " },
-            },
-            "encoding",
-            "filetype",
-          },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
+          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          { Util.lualine.pretty_path() },
         },
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = {
-            {
-              "filename",
-              file_status = true,
-              path = 1,
-            },
-          },
-          lualine_x = { "location" },
-          lualine_y = {},
-          lualine_z = {},
+        lualine_x = { { "encoding", separator = " ", padding = { left = 0, right = 1 } } },
+        lualine_y = {
+          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "location", separator = " ", padding = { left = 0, right = 1 } },
         },
-      }
-    end,
+      },
+    },
   },
   {
     "j-hui/fidget.nvim",
