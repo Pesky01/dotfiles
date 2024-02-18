@@ -4,6 +4,7 @@ SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr_c:cargo
 SETUVAR _fish_abbr_e:nvim
 SETUVAR _fish_abbr_g:git
+SETUVAR _fish_abbr_h:hx
 SETUVAR _fish_abbr_l:exa
 SETUVAR _fish_abbr_ll:exa\x20\x2dl
 SETUVAR _fish_abbr_lll:exa\x20\x2dla

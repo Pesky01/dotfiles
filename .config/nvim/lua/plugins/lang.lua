@@ -14,42 +14,18 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    --@class PluginLspOpts
     opts = {
       servers = {
-        ocamllsp = {},
+        ols = {
+          mason = false,
+        },
       },
     },
   },
   {
     "stevearc/conform.nvim",
     opts = {
-      formatters_by_ft = {
-        dart = { "dart_format" },
-        ocaml = { "ocamlformat" },
-      },
+      formatters_by_ft = {},
     },
-  },
-  {
-    "akinsho/flutter-tools.nvim",
-    ft = { "dart" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "stevearc/dressing.nvim",
-    },
-    config = true,
-  },
-  {
-    "Julian/lean.nvim",
-    event = { "BufReadPre *.lean", "BufNewFile *.lean" },
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "nvim-lua/plenary.nvim",
-    },
-    opts = function()
-      return {
-        abbreviations = { builtin = true },
-      }
-    end,
   },
 }

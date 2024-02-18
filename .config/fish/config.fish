@@ -1,5 +1,6 @@
 abbr -a c cargo
 abbr -a e nvim
+abbr -a h hx
 abbr -a g git
 
 set SKIM_DEFAULT_COMMAND 'fd --type d'
@@ -19,7 +20,7 @@ set fish_cursor_visual      block
 
 if status --is-interactive
   if ! set -q TMUX
-    exec tmux
+    exec tmux -2
 	end
 end
 
@@ -117,3 +118,6 @@ function fish_prompt
 	echo -n '|'
 	set_color normal
 end
+
+# opam configuration
+source /home/pesky/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

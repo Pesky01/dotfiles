@@ -16,16 +16,11 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       suggestion = {
-        accept = false,
-        auto_trigger = true,
+        accept = true,
       },
       filetypes = {
         lua = true,
-        typescript = true,
-        rust = false,
-        dart = false,
-        lean = false,
-        ocaml = false,
+        rust = true,
       },
     },
   },
@@ -39,8 +34,8 @@ return {
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           elseif require("copilot.suggestion").is_visible() then
             require("copilot.suggestion").accept()
-          elseif luasnip.expandable() then
-            luasnip.expand()
+          -- elseif luasnip.expandable() then
+          --   luasnip.expand()
           else
             fallback()
           end
@@ -51,8 +46,8 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-          elseif luasnip.expandable() then
-            luasnip.expand()
+          -- elseif luasnip.expandable() then
+          --   luasnip.expand()
           else
             fallback()
           end
