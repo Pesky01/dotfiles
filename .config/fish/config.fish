@@ -1,5 +1,6 @@
 abbr -a e nvim
 abbr -a g git
+abbr -a t task
 
 # alias fzf "cd ~ && cd (fd --type d | fzf)"
 
