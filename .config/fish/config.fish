@@ -4,6 +4,7 @@ abbr -a t task
 abbr -a el elm-land
 abbr -a c cargo
 abbr -a fzf fcd
+abbr -a lg lazygit
 
 # run tmux on shell start
 if status is-interactive
