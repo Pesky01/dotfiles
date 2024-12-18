@@ -1,8 +1,9 @@
 abbr -a e nvim
 abbr -a g git
 abbr -a t task
-
-# alias fzf "cd ~ && cd (fd --type d | fzf)"
+abbr -a el elm-land
+abbr -a c cargo
+abbr -a fzf fcd
 
 # run tmux on shell start
 if status is-interactive
@@ -74,7 +75,7 @@ set fish_cursor_replace_one underscore blink
 set fish_cursor_visual      block
 ################################
 
-############# lsd #############
+# START: lsd
 # map ls commands to lsd
 if command -v lsd > /dev/null
     abbr -a ls 'lsd'
@@ -86,4 +87,17 @@ else
     abbr -a la 'ls -a'
     abbr -a l 'ls -l'
 end
-###############################
+# END: lsd
+
+# START: fzf
+function fcd
+    set -l selection (fd . --search-path $HOME/.config --search-path $HOME/Development -E '**/node_modules' -E '**/target' | fzf --height 70% --layout reverse --border)
+    if test -n "$selection"
+        if test -f "$selection"  # if it's a file
+            cd (dirname "$selection")
+        else if test -d "$selection"  # if it's a directory
+            cd "$selection"
+        end
+    end
+end
+# END: fzf
