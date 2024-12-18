@@ -1,5 +1,5 @@
 **/*/fontforge
 **/*/github-copilot
 **/*/fontforge
-**/*/lazy-lock.json
+.config/nvim/lazy-lock.json
 ./sync_config.sh
