@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.zig_fmt_parse_errors = 0
 -- END: Globals
 
 -- START: Keymaps
@@ -595,10 +596,10 @@ require("lazy").setup({
 				local lint = require("lint")
 
 				lint.linters_by_ft = {
-					javascript = { "oxlint" },
-					javascriptreact = { "oxlint" },
-					typescript = { "oxlint" },
-					typescriptreact = { "oxlint" },
+					-- javascript = { "oxlint" },
+					-- javascriptreact = { "oxlint" },
+					-- typescript = { "oxlint" },
+					-- typescriptreact = { "oxlint" },
 				}
 
 				vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
@@ -678,6 +679,7 @@ require("lazy").setup({
 					typescriptreact = { "biome" },
 					javascript = { "biome" },
 					javascriptreact = { "biome" },
+					zig = { "zigfmt" },
 				},
 			},
 		},
@@ -953,8 +955,8 @@ require("lazy").setup({
 											"--",
 											"--no-deps",
 											"-W", "clippy::pedantic",
-											"-A", "unused_variables",
-											"-A", "dead_code",
+											-- "-A", "unused_variables",
+											-- "-A", "dead_code",
 											"-A", "clippy::struct_excessive_bools",
 											"-A", "clippy::struct_field_names",
 											"-A", "clippy::module_name_repetitions",
@@ -982,6 +984,13 @@ require("lazy").setup({
 							},
 						},
 					},
+					-- ts_ls = {
+					-- 	settings = {
+					-- 		implicitProjectConfiguration = {
+					-- 			checkJs = true,
+					-- 		},
+					-- 	},
+					-- },
 				}
 
 				require("mason").setup()
@@ -1079,7 +1088,7 @@ require("lazy").setup({
 						show_on_insert_on_trigger_character = false,
 					},
 					list = {
-						selection = "manual",
+						selection = { preselect = false, auto_insert = false },
 						cycle = {
 							from_bottom = true,
 							from_top = true,
